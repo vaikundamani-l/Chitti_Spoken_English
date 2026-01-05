@@ -1,85 +1,81 @@
-    // --- EXPANDED MOCK DATA (For Better Demo Experience) ---
+ // --- MOCK DATA FOR DEMO MODE ---
         const MOCK_DB = {
+            bonus: {
+                title: "The 3-Second Rule",
+                category: "Golden Trick",
+                content: "When translating from Tamil to English in your head, stop focusing on word-to-word translation.",
+                tamil_explanation: "தமிழ் வாக்கியத்தை அப்படியே ஆங்கிலத்தில் மொழிபெயர்க்காதீர்கள் (Word-to-word). தமிழுக்கும் ஆங்கிலத்திற்கும் வாக்கிய அமைப்பு (SVO vs SOV) மாறுபடும். முதலில் 'யார்' (Subject), அடுத்து 'என்ன செய்கிறார்' (Verb), கடைசியாக 'என்ன' (Object) என்று சிந்தியுங்கள்.",
+                example: "Tamil: நான் ஆப்பிள் சாப்பிடுகிறேன் (I apple eat) ❌ -> English: I eat an apple ✅"
+            },
+            practice: {
+                basic: {
+                    word: "Happy",
+                    tamil_meaning: "மகிழ்ச்சி",
+                    pronunciation: "ஹேப்பி",
+                    part_of_speech: "Adjective",
+                    forms: { v1: "-", v2: "-", v3: "-", ving: "-" },
+                    usage_tamil: "மனநிறைவு அல்லது மகிழ்ச்சியை வெளிப்படுத்த.",
+                    examples: [
+                        { eng: "I am happy.", tam: "நான் மகிழ்ச்சியாக இருக்கிறேன்.", label: "General" },
+                        { eng: "She looks happy.", tam: "அவள் மகிழ்ச்சியாக தெரிகிறாள்.", label: "Observation" }
+                    ],
+                    comparison: null,
+                    type: "word"
+                },
+                intermediate: {
+                    sentence: "I am going to the market to buy vegetables.",
+                    tamil_meaning: "நான் காய்கறிகள் வாங்க சந்தைக்குச் செல்கிறேன்.",
+                    level: "Intermediate",
+                    grammar: [
+                        { segment: "I am going", role: "Present Continuous Tense", meaning: "நான் சென்று கொண்டிருக்கிறேன்" },
+                        { segment: "to the market", role: "Destination (இடம்)", meaning: "சந்தைக்கு" },
+                        { segment: "to buy", role: "Purpose (காரணம்)", meaning: "வாங்க" },
+                        { segment: "vegetables", role: "Object", meaning: "காய்கறிகள்" }
+                    ],
+                    explanation: "This sentence tells where someone is going and why. 'To buy' shows the purpose.",
+                    key_words: [
+                        { word: "Market", meaning: "சந்தை" },
+                        { word: "Buy", meaning: "வாங்கு" }
+                    ],
+                    type: "sentence"
+                },
+                advanced: {
+                    sentence: "Although it was raining heavily, he decided to walk to work because his car had broken down.",
+                    tamil_meaning: "கனமழை பெய்து கொண்டிருந்த போதிலும், தனது கார் பழுதாகிவிட்டதால் அவர் வேலைக்கு நடந்து செல்ல முடிவு செய்தார்.",
+                    level: "Advanced",
+                    grammar: [
+                        { segment: "Although it was raining heavily", role: "Concession Clause", meaning: "மழை பெய்த போதிலும்" },
+                        { segment: "he decided to walk", role: "Main Action", meaning: "அவர் நடக்க முடிவு செய்தார்" },
+                        { segment: "because his car had broken down", role: "Reason Clause (Past Perfect)", meaning: "கார் பழுதாகிவிட்டதால்" }
+                    ],
+                    explanation: "This uses 'Although' to show contrast and 'Because' to show reason. Note 'had broken down' happened before he decided to walk.",
+                    key_words: [
+                        { word: "Although", meaning: "இருந்தபோதிலும்" },
+                        { word: "Heavily", meaning: "கடுமையாக" },
+                        { word: "Decide", meaning: "முடிவு செய்" }
+                    ],
+                    type: "sentence"
+                }
+            },
             words: {
                 "run": {
                     "word": "Run",
                     "tamil_meaning": "ஓடு / இயக்கு",
                     "pronunciation": "ரன்",
-                    "part_of_speech": "Verb / Noun",
-                    "forms": { "v1": "Run", "v2": "Ran", "v3": "Run", "ving": "Running" },
-                    "usage_tamil": "வேகமாக செல்வதை குறிக்க அல்லது ஒரு இயந்திரத்தை இயக்குவதை குறிக்க பயன்படுகிறது.",
-                    "examples": [
-                        { "eng": "I run every morning.", "tam": "நான் தினமும் காலையில் ஓடுகிறேன்.", "label": "V1 / General" },
-                        { "eng": "She ran to the store yesterday.", "tam": "நேற்று அவள் கடைக்கு ஓடினாள்.", "label": "V2 / Past" },
-                        { "eng": "He has run three marathons.", "tam": "அவர் மூன்று மராத்தான்கள் ஓடியுள்ளார்.", "label": "V3 / Perfect" },
-                        { "eng": "The dog is running in the park.", "tam": "நாய் பூங்காவில் ஓடிக்கொண்டிருக்கிறது.", "label": "Continuous" },
-                        { "eng": "She runs a software company.", "tam": "அவள் ஒரு மென்பொருள் நிறுவனத்தை நடத்துகிறாள்.", "label": "Manage" },
-                        { "eng": "My nose is running.", "tam": "என் மூக்கில் நீர் வடிகிறது.", "label": "Idiom" },
-                        { "eng": "Time is running out.", "tam": "நேரம் முடிந்து கொண்டிருக்கிறது.", "label": "Phrase" },
-                        { "eng": "The computer is running slow.", "tam": "கணினி மெதுவாக இயங்குகிறது.", "label": "Machine" },
-                        { "eng": "Don't run away from problems.", "tam": "பிரச்சனைகளில் இருந்து ஓடி ஒளியாதே.", "label": "Phrasal Verb" },
-                        { "eng": "The buses are not running today.", "tam": "இன்று பேருந்துகள் இயங்கவில்லை.", "label": "Transport" }
-                    ],
-                    "comparison": {
-                        "similar_word": "Jog",
-                        "difference_tamil": "'Run' என்றால் வேகமாக ஓடுவது. 'Jog' என்றால் உடற்பயிற்சிக்காக மெதுவாக ஓடுவது.",
-                        "example_eng": "I jog every morning to stay fit, but I run when I am late.",
-                        "example_tam": "நான் உடற்பயிற்சிக்காக தினமும் மெதுவாக ஓடுவேன் (Jog), ஆனால் தாமதமானால் வேகமாக ஓடுவேன் (Run)."
-                    },
-                    "collocations": ["Run away", "Run out of", "Run fast", "Run into"]
-                },
-                "eat": {
-                    "word": "Eat",
-                    "tamil_meaning": "சாப்பிடு",
-                    "pronunciation": "ஈட்",
                     "part_of_speech": "Verb",
-                    "forms": { "v1": "Eat", "v2": "Ate", "v3": "Eaten", "ving": "Eating" },
-                    "usage_tamil": "உணவை உட்கொள்வதை குறிக்க.",
-                    "examples": [
-                        { "eng": "I eat lunch at 1 PM.", "tam": "நான் மதியம் 1 மணிக்கு சாப்பிடுவேன்.", "label": "V1" },
-                        { "eng": "He ate a whole pizza.", "tam": "அவன் ஒரு முழு பீட்சாவையும் சாப்பிட்டான்.", "label": "V2" },
-                        { "eng": "We have eaten already.", "tam": "நாங்கள் ஏற்கனவே சாப்பிட்டுவிட்டோம்.", "label": "V3" },
-                        { "eng": "She is eating an apple.", "tam": "அவள் ஆப்பிள் சாப்பிட்டுக் கொண்டிருக்கிறாள்.", "label": "Ving" },
-                        { "eng": "Don't eat too much sugar.", "tam": "அதிக சர்க்கரை சாப்பிடாதே.", "label": "Advice" },
-                        { "eng": "Do you eat meat?", "tam": "நீ அசைவம் சாப்பிடுவாயா?", "label": "Question" },
-                        { "eng": "Let's eat out tonight.", "tam": "இன்று இரவு வெளியே சாப்பிடலாம்.", "label": "Phrasal Verb" },
-                        { "eng": "He eats like a horse.", "tam": "அவன் மிக அதிகமாக சாப்பிடுகிறான்.", "label": "Idiom" },
-                        { "eng": "Eat your vegetables.", "tam": "உன் காய்கறிகளை சாப்பிடு.", "label": "Command" },
-                        { "eng": "I'm eating my words now.", "tam": "நான் சொன்னதை திரும்பப் பெறுகிறேன் (தவறை உணர்ந்து).", "label": "Idiom" }
-                    ],
-                    "comparison": {
-                        "similar_word": "Feed",
-                        "difference_tamil": "'Eat' என்றால் சாப்பிடுவது (தானாக). 'Feed' என்றால் ஊட்டி விடுவது அல்லது உணவு அளிப்பது.",
-                        "example_eng": "I eat breakfast, but I feed my dog.",
-                        "example_tam": "நான் காலை உணவு சாப்பிடுவேன், ஆனால் என் நாய்க்கு உணவு வைப்பேன் (Feed)."
-                    },
-                    "collocations": ["Eat out", "Eat up", "Healthy eating"]
-                }
-            },
-            sentences: {
-                "i didn't went": {
-                    "is_correct": false,
-                    "correction": "I didn't go",
-                    "reason_tamil": "Did ஏற்கனவே Past tense-ஐ குறிக்கிறது. அதனால் அதற்குப் பிறகு வரும் வினைச்சொல் (verb) Present form-ல் (V1) தான் இருக்க வேண்டும். 'Went' வராது.",
-                    "alternatives": ["I did not go", "I haven't gone"]
+                    "forms": { "v1": "Run", "v2": "Ran", "v3": "Run", "ving": "Running" },
+                    "usage_tamil": "வேகமாக செல்வதை குறிக்க அல்லது இயந்திரத்தை இயக்குவதை குறிக்க.",
+                    "examples": [{ "eng": "I run daily.", "tam": "நான் தினமும் ஓடுகிறேன்.", "label": "V1" }],
+                    "comparison": { "similar_word": "Jog", "difference_tamil": "Jog மெதுவாக ஓடுவது.", "example_eng": "I jog, then run.", "example_tam": "நான் மெதுவாக ஓடி பின் வேகமாக ஓடுவேன்." },
+                    "collocations": ["Run fast"],
+                    "type": "word"
                 }
             },
             roleplay: {
-                "hello": {
-                    "reply": "Hello! Welcome to the coffee shop. What can I get for you today?",
-                    "reply_tamil": "வணக்கம்! காபி ஷாப்பிற்கு வரவேற்கிறோம். இன்று உங்களுக்கு என்ன வேண்டும்?",
-                    "correction": null
-                }
+                "hello": { "reply": "Hello! Welcome to the coffee shop.", "reply_tamil": "வணக்கம்! காபி ஷாப்பிற்கு வரவேற்கிறோம்.", "correction": null }
             },
             translator: {
-                "நான் வருகிறேன்": {
-                    "english": "I am coming.",
-                    "word_mapping": [
-                        {"tam": "நான் (Naan)", "eng": "I"},
-                        {"tam": "வருகிறேன் (Varugiren)", "eng": "am coming"}
-                    ],
-                    "grammar_note": "In Tamil, the verb 'வருகிறேன்' includes both the action 'come' and the tense 'present continuous'. English uses 'am coming' to show it is happening now."
-                }
+                "நான் வருகிறேன்": { "english": "I am coming.", "word_mapping": [], "grammar_note": "Present Continuous." }
             }
         };
 
@@ -89,9 +85,40 @@
             currentView: 'home',
             vocabList: JSON.parse(localStorage.getItem('chitti_vocab')) || [],
             roleplayContext: { scenario: 'General', history: [] },
+            darkMode: localStorage.getItem('chitti_dark_mode') === 'true',
             
+            init: () => {
+                app.updateApiStatus();
+                app.applyDarkMode();
+                app.navigate('home');
+                
+                // Set toggle state based on storage
+                const toggle = document.getElementById('dark-mode-toggle');
+                if(toggle) toggle.checked = app.darkMode;
+            },
+
+            toggleDarkMode: () => {
+                app.darkMode = !app.darkMode;
+                localStorage.setItem('chitti_dark_mode', app.darkMode);
+                app.applyDarkMode();
+            },
+
+            applyDarkMode: () => {
+                if (app.darkMode) {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                }
+            },
+
             toggleSettings: () => {
-                document.getElementById('settings-modal').classList.toggle('hidden');
+                const modal = document.getElementById('settings-modal');
+                modal.classList.toggle('hidden');
+                
+                // Sync toggle state whenever modal opens
+                const toggle = document.getElementById('dark-mode-toggle');
+                if(toggle) toggle.checked = app.darkMode;
+                
                 if(app.apiKey) document.getElementById('api-key-input').value = app.apiKey;
             },
             
@@ -105,7 +132,7 @@
                 app.apiKey = key;
                 app.toggleSettings();
                 app.updateApiStatus();
-                app.toast('API Key Saved! You have unlimited access.', 'success');
+                app.toast('API Key Saved!', 'success');
             },
 
             clearKey: () => {
@@ -125,8 +152,8 @@
             
             toast: (msg, type = 'info') => {
                 const div = document.createElement('div');
-                const bgColor = type === 'success' ? 'bg-green-600' : (type === 'error' ? 'bg-red-500' : 'bg-gray-800');
-                div.className = `fixed bottom-4 right-4 px-6 py-3 rounded-xl text-white shadow-xl fade-in z-[70] ${bgColor} flex items-center gap-2`;
+                const bgColor = type === 'success' ? 'bg-green-600' : (type === 'error' ? 'bg-red-500' : 'bg-gray-800 dark:bg-slate-700');
+                div.className = `fixed bottom-4 right-4 px-6 py-3 rounded-xl text-white shadow-xl fade-in z-[70] ${bgColor} flex items-center gap-2 border border-white/10`;
                 div.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i> <span>${msg}</span>`;
                 document.body.appendChild(div);
                 setTimeout(() => div.remove(), 3000);
@@ -136,16 +163,35 @@
                 app.currentView = view;
                 document.getElementById('mobile-menu').classList.add('hidden');
                 
-                document.querySelectorAll('[id^="nav-"]').forEach(btn => btn.classList.remove('bg-blue-100', 'text-blue-700'));
+                document.querySelectorAll('[id^="nav-"]').forEach(btn => {
+                    // Clean reset
+                    btn.className = "px-3 py-1.5 rounded-md text-sm font-medium transition hover:bg-white dark:hover:bg-slate-700 hover:shadow-sm whitespace-nowrap text-gray-600 dark:text-gray-300 flex items-center gap-1"; 
+                    
+                    // Specific color adjustments for special buttons in inactive state
+                    if(btn.id === 'nav-bonus') btn.classList.add('text-amber-600', 'dark:text-amber-400');
+                    if(btn.id === 'nav-practice') btn.classList.add('text-pink-600', 'dark:text-pink-400');
+                });
+                
                 const activeBtn = document.getElementById(`nav-${view}`);
-                if(activeBtn) activeBtn.classList.add('bg-blue-100', 'text-blue-700');
+                if(activeBtn) {
+                    activeBtn.classList.remove('text-gray-600', 'dark:text-gray-300', 'hover:bg-white', 'dark:hover:bg-slate-700');
+                    if (view === 'practice') {
+                        activeBtn.className += ' bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-300';
+                    } else if (view === 'bonus') {
+                        activeBtn.className += ' bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300';
+                    } else {
+                        activeBtn.className += ' bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300';
+                    }
+                }
 
                 const content = document.getElementById('app-content');
                 content.innerHTML = ''; 
                 
                 switch(view) {
                     case 'home': views.renderHome(content); break;
+                    case 'bonus': views.renderBonus(content); break;
                     case 'word360': views.renderWord360(content); break;
+                    case 'practice': views.renderPractice(content); break;
                     case 'fixer': views.renderFixer(content); break;
                     case 'vocab': views.renderVocab(content); break;
                     case 'roleplay': views.renderRoleplay(content); break;
@@ -161,25 +207,22 @@
                 if (!app.apiKey) {
                     return new Promise((resolve) => {
                         setTimeout(() => {
-                            const term = input.toLowerCase().trim();
-                            
-                            if (promptType === 'word_explainer') {
-                                // Default to 'run' if word matches or if user enters something random in demo
-                                if (MOCK_DB.words[term]) resolve(MOCK_DB.words[term]);
-                                else resolve({ error: "demo_limit" });
-                            } else if (promptType === 'correction') {
-                                const key = Object.keys(MOCK_DB.sentences).find(k => term.includes(k));
-                                resolve(key ? MOCK_DB.sentences[key] : {
-                                    is_correct: true, correction: input, reason_tamil: "Demo: Looks good!", alternatives: []
-                                });
+                            if (promptType === 'word_explainer' && MOCK_DB.words[input.toLowerCase()]) {
+                                resolve(MOCK_DB.words[input.toLowerCase()]);
+                            } else if (promptType === 'practice_basic') {
+                                resolve(MOCK_DB.practice.basic);
+                            } else if (promptType === 'practice_intermediate') {
+                                resolve(MOCK_DB.practice.intermediate);
+                            } else if (promptType === 'practice_advanced') {
+                                resolve(MOCK_DB.practice.advanced);
+                            } else if (promptType === 'daily_bonus') {
+                                resolve(MOCK_DB.bonus);
                             } else if (promptType === 'roleplay') {
                                 resolve(MOCK_DB.roleplay['hello']);
                             } else if (promptType === 'translator') {
-                                resolve(MOCK_DB.translator['நான் வருகிறேன்'] || {
-                                    english: "Demo: Please add API Key",
-                                    word_mapping: [],
-                                    grammar_note: "Demo Mode only supports 'நான் வருகிறேன்'"
-                                });
+                                resolve(MOCK_DB.translator['நான் வருகிறேன்']);
+                            } else {
+                                resolve({ error: "demo_limit" });
                             }
                         }, 1200);
                     });
@@ -210,70 +253,22 @@
 
             getPrompt(type, input, context) {
                 if (type === 'word_explainer') {
-                    return `Act as an English Teacher for Tamil students. Analyze the word "${input}". 
-                    Return strictly valid JSON with NO markdown:
-                    {
-                        "word": "${input}",
-                        "tamil_meaning": "Meaning in Tamil",
-                        "pronunciation": "Tamil phonetic (e.g. ரன்)",
-                        "part_of_speech": "Noun/Verb/Adj",
-                        "forms": {"v1": "Base", "v2": "Past", "v3": "Past Participle", "ving": "Continuous"},
-                        "usage_tamil": "Detailed explanation of when to use this word in Tamil.",
-                        "examples": [
-                            {"eng": "Sentence using V1 (if verb) or general usage", "tam": "Tamil translation", "label": "V1 / General"},
-                            {"eng": "Sentence using V2 (if verb)", "tam": "Tamil translation", "label": "V2 / Past"},
-                            {"eng": "Sentence using V3 (if verb)", "tam": "Tamil translation", "label": "V3 / Perfect"},
-                            {"eng": "Sentence using Ving (if verb)", "tam": "Tamil translation", "label": "Continuous"},
-                            {"eng": "Sentence in a different context", "tam": "Tamil translation", "label": "Context 1"},
-                            {"eng": "Sentence in another context", "tam": "Tamil translation", "label": "Context 2"},
-                            {"eng": "Idiom or Phrase usage", "tam": "Tamil translation", "label": "Idiom"},
-                            {"eng": "Negative sentence", "tam": "Tamil translation", "label": "Negative"},
-                            {"eng": "Question format", "tam": "Tamil translation", "label": "Question"},
-                            {"eng": "Common daily usage", "tam": "Tamil translation", "label": "Daily Use"}
-                            // Provide at least 10 examples covering V1, V2, V3, Ving if it's a verb.
-                        ],
-                        "comparison": {
-                            "similar_word": "A word often confused with this (e.g. Say vs Tell, Make vs Build)",
-                            "difference_tamil": "Explain the difference in Tamil clearly.",
-                            "example_eng": "A sentence showing the distinction.",
-                            "example_tam": "Tamil translation of the distinction example."
-                        },
-                        "collocations": ["List", "4", "common", "pairs"]
-                    }`;
+                    return `Act as an English Teacher for Tamil students. Analyze the word "${input}". Return JSON: { "word": "${input}", "tamil_meaning": "...", "pronunciation": "...", "part_of_speech": "...", "forms": {"v1": "...", "v2": "...", "v3": "...", "ving": "..."}, "usage_tamil": "...", "examples": [{"eng": "...", "tam": "...", "label": "..."}], "comparison": {"similar_word": "...", "difference_tamil": "...", "example_eng": "...", "example_tam": "..."}, "type": "word" }`;
+                } else if (type === 'practice_basic') {
+                    return `Generate a random common English word (A1/A2 level). Analyze it for a Tamil student. Return JSON: { "word": "THE_WORD", "tamil_meaning": "...", "pronunciation": "...", "part_of_speech": "...", "forms": {"v1": "...", "v2": "...", "v3": "...", "ving": "..."}, "usage_tamil": "...", "examples": [{"eng": "...", "tam": "...", "label": "..."}, {"eng": "...", "tam": "...", "label": "..."}], "comparison": {"similar_word": "...", "difference_tamil": "...", "example_eng": "...", "example_tam": "..."}, "type": "word" }`;
+                } else if (type === 'practice_intermediate') {
+                    return `Generate a simple/medium English sentence (B1 level). Analyze it for a Tamil student. Return JSON: { "sentence": "THE_SENTENCE", "tamil_meaning": "...", "level": "Intermediate", "grammar": [{"segment": "part of sentence", "role": "Subject/Verb/etc", "meaning": "Tamil meaning"}], "explanation": "Simple explanation of sentence structure", "key_words": [{"word": "...", "meaning": "..."}], "type": "sentence" }`;
+                } else if (type === 'practice_advanced') {
+                    return `Generate a complex/long English sentence (C1 level). Analyze it for a Tamil student. Return JSON: { "sentence": "THE_SENTENCE", "tamil_meaning": "...", "level": "Advanced", "grammar": [{"segment": "part of sentence", "role": "Clause/Tense/etc", "meaning": "Tamil meaning"}], "explanation": "Detailed explanation of complex structure", "key_words": [{"word": "...", "meaning": "..."}], "type": "sentence" }`;
+                } else if (type === 'daily_bonus') {
+                    return `Generate a random 'Golden Rule', 'Secret Trick', or 'Pro Tip' for learning English, specifically tailored for a Tamil speaker learning English. It could be about grammar, pronunciation, or mindset. Return JSON: { "title": "Catchy Title", "category": "Golden Rule/Trick/Tip", "content": "The rule/tip in English", "tamil_explanation": "Detailed explanation in Tamil clarifying why this is important", "example": "A clear example showing the rule in action" }`;
                 } else if (type === 'correction') {
-                    return `Check this English sentence for a Tamil speaker: "${input}". 
-                    Return strictly valid JSON with NO markdown:
-                    {
-                        "is_correct": boolean,
-                        "correction": "Corrected sentence",
-                        "reason_tamil": "Explain the mistake using Tamil logic comparison.",
-                        "alternatives": ["Natural native alternative 1", "Formal alternative 2"]
-                    }`;
+                    return `Check this sentence: "${input}". Return JSON: { "is_correct": boolean, "correction": "...", "reason_tamil": "...", "alternatives": ["..."] }`;
                 } else if (type === 'roleplay') {
                     const historyText = context.history.map(m => `${m.sender}: ${m.text}`).join('\n');
-                    return `Act as a character in a ${context.scenario} scenario.
-                    Keep responses concise (max 2 sentences) and friendly.
-                    
-                    Conversation History:
-                    ${historyText}
-                    User: ${input}
-                    
-                    Reply to the user. If the user made a grammar mistake, provide a gentle correction in the 'correction' field, otherwise null.
-                    Return strictly valid JSON with NO markdown:
-                    {
-                        "reply": "Your response as the character",
-                        "reply_tamil": "Tamil translation of your response (casual/spoken style)",
-                        "correction": "Correction of user's last message if needed, else null"
-                    }`;
+                    return `Act as a character in a ${context.scenario} scenario. History: ${historyText}. User: ${input}. Reply strictly JSON: { "reply": "...", "reply_tamil": "...", "correction": "correction if needed else null" }`;
                 } else if (type === 'translator') {
-                    return `Translate this Tamil sentence to English: "${input}".
-                    Explain the grammar logic/word order change for a learner.
-                    Return strictly valid JSON with NO markdown:
-                    {
-                        "english": "English translation",
-                        "word_mapping": [{"tam": "Tamil Word", "eng": "English Equivalent"}],
-                        "grammar_note": "Explain the structural difference (e.g. SOV vs SVO) in English."
-                    }`;
+                    return `Translate to English: "${input}". Return JSON: { "english": "...", "word_mapping": [{"tam":"...", "eng":"..."}], "grammar_note": "..." }`;
                 }
             }
         };
@@ -283,106 +278,260 @@
             renderHome: (container) => {
                 container.innerHTML = `
                     <div class="text-center py-8 md:py-16 fade-in">
-                        <div class="inline-block p-2 bg-blue-100 rounded-2xl mb-4">
-                            <i class="fas fa-robot text-4xl text-blue-600 animate-bounce"></i>
+                        <div class="inline-block p-2 bg-blue-100 dark:bg-blue-900/50 rounded-2xl mb-4">
+                            <i class="fas fa-robot text-4xl text-blue-600 dark:text-blue-400 animate-bounce"></i>
                         </div>
-                        <h1 class="text-4xl md:text-5xl font-extrabold text-gray-800 mb-3 tracking-tight">
+                        <h1 class="text-4xl md:text-5xl font-extrabold text-gray-800 dark:text-white mb-3 tracking-tight">
                             Hello, I am <span class="gradient-text">Chitti.</span>
                         </h1>
-                        <h2 class="text-xl md:text-2xl text-gray-500 font-medium mb-8 tamil-text">உங்கள் தமிழ் வழி ஆங்கில ஆசிரியர்.</h2>
+                        <h2 class="text-xl md:text-2xl text-gray-500 dark:text-gray-400 font-medium mb-8 tamil-text">உங்கள் தமிழ் வழி ஆங்கில ஆசிரியர்.</h2>
                         
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-4xl mx-auto px-2">
-                            <!-- Card 1 -->
-                            <div onclick="app.navigate('word360')" class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition cursor-pointer border border-gray-100 group text-left relative overflow-hidden">
-                                <div class="absolute top-0 right-0 w-20 h-20 bg-blue-50 rounded-bl-full -mr-10 -mt-10 transition group-hover:bg-blue-100"></div>
-                                <div class="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center text-white text-xl mb-4 shadow-lg shadow-blue-200">
+                            <!-- Daily Bonus Card -->
+                            <div onclick="app.navigate('bonus')" class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm hover:shadow-xl transition cursor-pointer border-l-4 border-amber-500 dark:border-amber-600 group text-left relative overflow-hidden">
+                                <div class="absolute top-0 right-0 w-24 h-24 bg-amber-50 dark:bg-amber-900/20 rounded-bl-full -mr-10 -mt-10 transition group-hover:bg-amber-100 dark:group-hover:bg-amber-900/40"></div>
+                                <div class="w-12 h-12 bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400 rounded-xl flex items-center justify-center text-xl mb-4 relative z-10">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <h3 class="font-bold text-lg mb-1 relative z-10 text-gray-800 dark:text-white">Daily Bonus</h3>
+                                <p class="text-gray-500 dark:text-gray-400 text-sm tamil-text leading-relaxed relative z-10">Golden Rules & Tricks for English.</p>
+                            </div>
+
+                             <!-- Practice Card -->
+                            <div onclick="app.navigate('practice')" class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm hover:shadow-xl transition cursor-pointer border border-gray-100 dark:border-slate-700 group text-left relative overflow-hidden">
+                                <div class="w-12 h-12 bg-pink-100 dark:bg-pink-900/40 text-pink-600 dark:text-pink-400 rounded-xl flex items-center justify-center text-xl mb-4">
+                                    <i class="fas fa-dumbbell"></i>
+                                </div>
+                                <h3 class="font-bold text-lg mb-1 text-gray-800 dark:text-white">Practice Mode</h3>
+                                <p class="text-gray-500 dark:text-gray-400 text-sm tamil-text leading-relaxed">Basic, Intermediate & Advanced பயிற்சி.</p>
+                            </div>
+
+                            <div onclick="app.navigate('word360')" class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm hover:shadow-xl transition cursor-pointer border border-gray-100 dark:border-slate-700 group text-left">
+                                <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center text-xl mb-4">
                                     <i class="fas fa-search"></i>
                                 </div>
-                                <h3 class="font-bold text-lg mb-1">Word 360°</h3>
-                                <p class="text-gray-500 text-sm tamil-text leading-relaxed">சொற்களை ஆழமாக புரிந்து கொள்ள சிறந்த வழி.</p>
-                            </div>
-
-                            <!-- Card 2 -->
-                            <div onclick="app.navigate('fixer')" class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition cursor-pointer border border-gray-100 group text-left relative overflow-hidden">
-                                <div class="absolute top-0 right-0 w-20 h-20 bg-orange-50 rounded-bl-full -mr-10 -mt-10 transition group-hover:bg-orange-100"></div>
-                                <div class="w-12 h-12 bg-secondary rounded-xl flex items-center justify-center text-white text-xl mb-4 shadow-lg shadow-orange-200">
-                                    <i class="fas fa-wand-magic-sparkles"></i>
-                                </div>
-                                <h3 class="font-bold text-lg mb-1">Fix Grammar</h3>
-                                <p class="text-gray-500 text-sm tamil-text leading-relaxed">வாக்கிய பிழைகளை திருத்தி விளக்கம் பெறுங்கள்.</p>
-                            </div>
-
-                            <!-- Card 3 (Roleplay) -->
-                            <div onclick="app.navigate('roleplay')" class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition cursor-pointer border border-gray-100 group text-left relative overflow-hidden">
-                                <div class="absolute top-0 right-0 w-20 h-20 bg-purple-50 rounded-bl-full -mr-10 -mt-10 transition group-hover:bg-purple-100"></div>
-                                <div class="w-12 h-12 bg-purple-500 rounded-xl flex items-center justify-center text-white text-xl mb-4 shadow-lg shadow-purple-200">
-                                    <i class="fas fa-comments"></i>
-                                </div>
-                                <h3 class="font-bold text-lg mb-1 flex items-center gap-2">Roleplay <span class="bg-purple-100 text-purple-700 text-xs px-2 py-0.5 rounded-full">New</span></h3>
-                                <p class="text-gray-500 text-sm tamil-text leading-relaxed">சிட்டியுடன் ஆங்கிலத்தில் பேசி பழகுங்கள்.</p>
-                            </div>
-
-                            <!-- Card 4 (Translator) -->
-                            <div onclick="app.navigate('translator')" class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition cursor-pointer border border-gray-100 group text-left relative overflow-hidden">
-                                <div class="absolute top-0 right-0 w-20 h-20 bg-indigo-50 rounded-bl-full -mr-10 -mt-10 transition group-hover:bg-indigo-100"></div>
-                                <div class="w-12 h-12 bg-indigo-500 rounded-xl flex items-center justify-center text-white text-xl mb-4 shadow-lg shadow-indigo-200">
-                                    <i class="fas fa-language"></i>
-                                </div>
-                                <h3 class="font-bold text-lg mb-1 flex items-center gap-2">Smart Translator <span class="bg-indigo-100 text-indigo-700 text-xs px-2 py-0.5 rounded-full">New</span></h3>
-                                <p class="text-gray-500 text-sm tamil-text leading-relaxed">மொழிபெயர்ப்புடன் இலக்கண விளக்கமும்.</p>
-                            </div>
-
-                             <!-- Card 5 (Vocab) -->
-                            <div onclick="app.navigate('vocab')" class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition cursor-pointer border border-gray-100 group text-left relative overflow-hidden md:col-span-2 lg:col-span-2">
-                                <div class="absolute top-0 right-0 w-20 h-20 bg-emerald-50 rounded-bl-full -mr-10 -mt-10 transition group-hover:bg-emerald-100"></div>
-                                <div class="w-12 h-12 bg-emerald-500 rounded-xl flex items-center justify-center text-white text-xl mb-4 shadow-lg shadow-emerald-200">
-                                    <i class="fas fa-book-bookmark"></i>
-                                </div>
-                                <h3 class="font-bold text-lg mb-1">My Vocab</h3>
-                                <p class="text-gray-500 text-sm tamil-text leading-relaxed">சேமித்த சொற்களை மீண்டும் படியுங்கள்.</p>
+                                <h3 class="font-bold text-lg mb-1 text-gray-800 dark:text-white">Word 360°</h3>
+                                <p class="text-gray-500 dark:text-gray-400 text-sm tamil-text leading-relaxed">சொற்களை ஆழமாக புரிந்து கொள்ள.</p>
                             </div>
                         </div>
-
-                        <!-- Status Badge -->
-                        <div class="mt-10 inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full border border-gray-200 shadow-sm text-sm">
+                        
+                         <div class="mt-10 inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 rounded-full border border-gray-200 dark:border-slate-700 shadow-sm text-sm">
                             <span class="w-2 h-2 rounded-full ${app.apiKey ? 'bg-green-500' : 'bg-orange-400'}"></span>
-                            <span class="text-gray-600 font-medium">
-                                ${app.apiKey ? 'Chitti is Online (Full Access)' : 'Demo Mode (Limited Words)'}
+                            <span class="text-gray-600 dark:text-gray-300 font-medium">
+                                ${app.apiKey ? 'Chitti is Online (Full Access)' : 'Demo Mode (Limited Content)'}
                             </span>
                         </div>
                     </div>
                 `;
             },
 
-            renderWord360: (container) => {
-                // Determine random suggestions based on API mode
-                const demoWords = Object.keys(MOCK_DB.words);
-                const fullWords = ["Resilience", "Empathy", "Perspective", "Nostalgia", "Ambition", "Integrity", "Courage", "Optimism", "Procrastinate", "Consistent", "Unique", "Determine", "Journey", "Wisdom", "Knowledge"];
-                
-                const sourceList = app.apiKey ? fullWords : demoWords;
-                const shuffled = sourceList.sort(() => 0.5 - Math.random()).slice(0, 5);
-                
-                const suggestionsHtml = shuffled.map(word => 
-                    `<button onclick="document.getElementById('word-input').value='${word}'; views.handleWordSubmit()" class="text-xs bg-white border border-gray-200 px-3 py-1.5 rounded-full hover:bg-blue-50 hover:border-blue-200 text-gray-600 hover:text-blue-600 transition capitalize">${word}</button>`
-                ).join('');
+            // --- DAILY BONUS ---
+            renderBonus: (container) => {
+                container.innerHTML = `
+                    <div class="max-w-2xl mx-auto fade-in">
+                        <div class="text-center mb-8">
+                            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">Daily Bonus <i class="fas fa-star text-amber-500"></i></h2>
+                            <p class="text-gray-500 dark:text-gray-400 tamil-text">இன்றைய ஆங்கில ரகசியம் மற்றும் பொன்விதிகள்.</p>
+                        </div>
 
+                        <div id="bonus-card" class="min-h-[300px]">
+                             <!-- Content loads here -->
+                        </div>
+
+                        <div class="text-center mt-8">
+                            <button onclick="views.handleBonus()" class="bg-gray-800 dark:bg-slate-700 text-white px-6 py-3 rounded-xl font-bold hover:bg-black dark:hover:bg-slate-900 transition shadow-lg flex items-center gap-2 mx-auto">
+                                <i class="fas fa-magic"></i> Reveal New Secret
+                            </button>
+                        </div>
+                    </div>
+                `;
+                views.handleBonus();
+            },
+
+            handleBonus: async () => {
+                const resDiv = document.getElementById('bonus-card');
+                resDiv.innerHTML = `<div class="flex flex-col items-center py-12"><div class="loader mb-4 border-t-amber-500 border-gray-200 dark:border-slate-700"></div><p class="text-gray-500 dark:text-gray-400 text-sm font-medium animate-pulse">Unlocking secret...</p></div>`;
+
+                const data = await aiService.generateContent('daily_bonus', '');
+                
+                if (data && data.error === 'demo_limit') {
+                     resDiv.innerHTML = `<div class="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-sm border border-orange-200 dark:border-orange-900 text-center fade-in"><div class="w-16 h-16 bg-orange-100 dark:bg-orange-900/30 text-orange-500 dark:text-orange-400 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl"><i class="fas fa-lock"></i></div><h3 class="text-lg font-bold text-gray-800 dark:text-white mb-2">Bonus Locked</h3><p class="text-gray-600 dark:text-gray-400 mb-6">Demo mode has limited bonus content. Add API Key.</p></div>`;
+                     return;
+                }
+                if (!data) return;
+
+                resDiv.innerHTML = `
+                    <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-xl overflow-hidden fade-in border border-amber-100 dark:border-amber-900/30 relative">
+                        <!-- Decorative Header -->
+                        <div class="bg-gold-gradient p-8 text-white text-center relative overflow-hidden">
+                            <div class="absolute top-0 left-0 w-full h-full opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+                            <span class="bg-white/20 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-2 inline-block backdrop-blur-sm">${data.category}</span>
+                            <h1 class="text-3xl font-extrabold mb-2 drop-shadow-sm leading-tight">${data.title}</h1>
+                            <div class="w-16 h-1 bg-white/50 mx-auto rounded-full"></div>
+                        </div>
+
+                        <div class="p-8">
+                            <div class="text-center mb-8">
+                                <p class="text-xl text-gray-800 dark:text-gray-200 font-medium leading-relaxed">"${data.content}"</p>
+                            </div>
+
+                            <div class="bg-amber-50 dark:bg-amber-900/20 p-6 rounded-2xl border border-amber-100 dark:border-amber-900/30 mb-6">
+                                <h4 class="text-amber-800 dark:text-amber-400 font-bold text-sm uppercase tracking-wide mb-3 flex items-center justify-center gap-2">
+                                    <i class="fas fa-lightbulb"></i> Explanation (விளக்கம்)
+                                </h4>
+                                <p class="text-gray-700 dark:text-gray-300 tamil-text text-center leading-relaxed">
+                                    ${data.tamil_explanation}
+                                </p>
+                            </div>
+
+                            <div class="bg-gray-50 dark:bg-slate-900 p-5 rounded-xl border border-gray-100 dark:border-slate-700">
+                                <span class="text-xs text-gray-400 font-bold uppercase tracking-wide block mb-2">Example:</span>
+                                <p class="text-gray-800 dark:text-gray-200 font-mono text-sm">${data.example}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            },
+
+            // --- PRACTICE MODE ---
+            renderPractice: (container) => {
+                container.innerHTML = `
+                    <div class="max-w-4xl mx-auto fade-in">
+                        <div class="text-center mb-8">
+                            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">Practice & Learn</h2>
+                            <p class="text-gray-500 dark:text-gray-400 tamil-text">உங்கள் நிலையைத் தேர்ந்தெடுத்து கற்கத் தொடங்குங்கள்.</p>
+                        </div>
+                        
+                        <div class="flex flex-wrap justify-center gap-3 mb-8">
+                            <button onclick="views.handlePractice('basic')" id="btn-basic" class="px-6 py-3 rounded-xl font-bold border-2 border-green-100 dark:border-green-900/30 bg-white dark:bg-slate-800 text-green-600 dark:text-green-400 hover:bg-green-50 dark:hover:bg-slate-700 hover:border-green-300 dark:hover:border-green-800 transition flex items-center gap-2 shadow-sm">
+                                <i class="fas fa-seedling"></i> Basic
+                            </button>
+                            <button onclick="views.handlePractice('intermediate')" id="btn-intermediate" class="px-6 py-3 rounded-xl font-bold border-2 border-blue-100 dark:border-blue-900/30 bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-slate-700 hover:border-blue-300 dark:hover:border-blue-800 transition flex items-center gap-2 shadow-sm">
+                                <i class="fas fa-layer-group"></i> Intermediate
+                            </button>
+                            <button onclick="views.handlePractice('advanced')" id="btn-advanced" class="px-6 py-3 rounded-xl font-bold border-2 border-purple-100 dark:border-purple-900/30 bg-white dark:bg-slate-800 text-purple-600 dark:text-purple-400 hover:bg-purple-50 dark:hover:bg-slate-700 hover:border-purple-300 dark:hover:border-purple-800 transition flex items-center gap-2 shadow-sm">
+                                <i class="fas fa-brain"></i> Advanced
+                            </button>
+                        </div>
+
+                        <div id="practice-result" class="min-h-[300px]">
+                            <div class="text-center text-gray-400 dark:text-gray-600 py-10">
+                                <i class="fas fa-arrow-up text-2xl mb-2 animate-bounce"></i>
+                                <p>Select a level to generate content</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            },
+
+            handlePractice: async (level) => {
+                // Update button styles
+                ['basic', 'intermediate', 'advanced'].forEach(l => {
+                    const btn = document.getElementById(`btn-${l}`);
+                    // Reset to default
+                    btn.className = btn.className.replace('ring-2 ring-offset-2 dark:ring-offset-slate-900', '').replace('bg-gray-100 dark:bg-slate-700', 'bg-white dark:bg-slate-800');
+                    if(l === level) {
+                        btn.className = btn.className.replace('bg-white dark:bg-slate-800', 'bg-gray-100 dark:bg-slate-700 ring-2 ring-offset-2 dark:ring-offset-slate-900');
+                    }
+                });
+
+                const resDiv = document.getElementById('practice-result');
+                resDiv.innerHTML = `<div class="flex flex-col items-center py-12"><div class="loader mb-4"></div><p class="text-gray-500 dark:text-gray-400 text-sm font-medium animate-pulse">Generating ${level} content...</p></div>`;
+
+                let promptType = `practice_${level}`;
+                const data = await aiService.generateContent(promptType, '');
+
+                if (data && data.error === 'demo_limit') {
+                     resDiv.innerHTML = `<div class="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-sm border border-orange-200 dark:border-orange-900/50 text-center fade-in"><div class="w-16 h-16 bg-orange-100 dark:bg-orange-900/30 text-orange-500 dark:text-orange-400 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl"><i class="fas fa-lock"></i></div><h3 class="text-lg font-bold text-gray-800 dark:text-white mb-2">Practice Mode Locked</h3><p class="text-gray-600 dark:text-gray-400 mb-6">Demo mode has limited practice content. Add API Key for unlimited generation.</p><button onclick="app.toggleSettings()" class="bg-blue-600 text-white px-6 py-2 rounded-lg">Add Key</button></div>`;
+                     return;
+                }
+                if (!data) return;
+
+                if (data.type === 'word') {
+                    views.renderWordCard(data, resDiv, true);
+                } else if (data.type === 'sentence') {
+                    views.renderSentenceCard(data, resDiv, level);
+                }
+            },
+
+            renderSentenceCard: (data, container, level) => {
+                const badgeColor = level === 'intermediate' ? 'blue' : 'purple';
+                
+                const grammarHtml = data.grammar.map(g => `
+                    <div class="flex flex-col md:flex-row md:items-center justify-between p-3 bg-white dark:bg-slate-800 rounded-lg border border-gray-100 dark:border-slate-700 hover:border-${badgeColor}-200 dark:hover:border-${badgeColor}-700 transition">
+                        <div class="mb-1 md:mb-0">
+                            <span class="font-bold text-gray-800 dark:text-gray-200 bg-gray-50 dark:bg-slate-700 px-2 py-1 rounded text-sm">${g.segment}</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-sm">
+                            <span class="text-${badgeColor}-600 dark:text-${badgeColor}-400 font-medium">${g.role}</span>
+                            <i class="fas fa-arrow-right text-gray-300 dark:text-gray-600 text-xs"></i>
+                            <span class="text-gray-500 dark:text-gray-400 tamil-text">${g.meaning}</span>
+                        </div>
+                    </div>
+                `).join('');
+
+                const keywordsHtml = data.key_words.map(k => `
+                    <span class="inline-flex items-center gap-1 bg-gray-100 dark:bg-slate-700 px-2 py-1 rounded-md text-sm text-gray-700 dark:text-gray-200">
+                        <strong>${k.word}</strong>: <span class="tamil-text text-gray-500 dark:text-gray-400">${k.meaning}</span>
+                    </span>
+                `).join('');
+
+                container.innerHTML = `
+                    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl overflow-hidden fade-in border border-gray-100 dark:border-slate-700 relative">
+                        <div class="bg-gradient-to-r from-${badgeColor}-500 to-${badgeColor}-700 p-6 text-white">
+                             <div class="flex justify-between items-start mb-2">
+                                <span class="bg-white/20 px-2 py-0.5 rounded text-xs uppercase tracking-wider font-bold">${data.level} Sentence</span>
+                                <button onclick="views.handlePractice('${level}')" class="bg-white text-${badgeColor}-600 px-3 py-1 rounded-lg text-sm font-bold shadow-lg hover:scale-105 transition"><i class="fas fa-sync-alt mr-1"></i> Next</button>
+                            </div>
+                            <h2 class="text-2xl md:text-3xl font-bold leading-relaxed mb-4">"${data.sentence}"</h2>
+                            <p class="tamil-text text-lg text-${badgeColor}-100 border-l-4 border-white/30 pl-3">${data.tamil_meaning}</p>
+                        </div>
+
+                        <div class="p-6 space-y-6">
+                            <!-- 360 Breakdown -->
+                            <div>
+                                <h4 class="text-gray-400 dark:text-gray-500 font-bold uppercase text-xs tracking-wider mb-3">360° Grammar Breakdown</h4>
+                                <div class="space-y-2 bg-gray-50 dark:bg-slate-900 p-4 rounded-xl">
+                                    ${grammarHtml}
+                                </div>
+                            </div>
+
+                            <!-- Explanation -->
+                            <div class="flex gap-4 items-start bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-xl border border-yellow-100 dark:border-yellow-900/30">
+                                <div class="text-yellow-600 dark:text-yellow-500 text-xl"><i class="fas fa-lightbulb"></i></div>
+                                <div>
+                                    <h4 class="text-yellow-800 dark:text-yellow-500 font-bold text-sm mb-1">Why is it structured this way?</h4>
+                                    <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">${data.explanation}</p>
+                                </div>
+                            </div>
+
+                            <!-- Keywords -->
+                            <div>
+                                <h4 class="text-gray-400 dark:text-gray-500 font-bold uppercase text-xs tracking-wider mb-2">Key Vocabulary</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    ${keywordsHtml}
+                                </div>
+                            </div>
+
+                            <button onclick='views.saveToVocab(${JSON.stringify(data).replace(/'/g, "&#39;")})' class="w-full flex items-center justify-center gap-2 bg-gray-900 dark:bg-black text-white hover:bg-black dark:hover:bg-gray-900 px-6 py-3 rounded-xl transition shadow-lg shadow-gray-200 dark:shadow-none">
+                                <i class="far fa-bookmark"></i> Save Sentence
+                            </button>
+                        </div>
+                    </div>
+                `;
+            },
+
+            renderWord360: (container) => {
                 container.innerHTML = `
                     <div class="max-w-3xl mx-auto fade-in">
                         <div class="text-center mb-8">
-                            <h2 class="text-2xl font-bold text-gray-800 mb-2">Word 360° Analysis</h2>
-                            <p class="text-gray-500 tamil-text">எந்த வார்த்தையையும் சந்தேகமே இல்லாமல் கற்றுக்கொள்ளுங்கள்.</p>
+                            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">Word 360° Analysis</h2>
+                            <p class="text-gray-500 dark:text-gray-400 tamil-text">எந்த வார்த்தையையும் சந்தேகமே இல்லாமல் கற்றுக்கொள்ளுங்கள்.</p>
                         </div>
-                        <div class="bg-white rounded-2xl shadow-lg p-3 flex border border-gray-200 focus-within:border-blue-500 focus-within:ring-4 ring-blue-50 transition mb-4">
-                            <input type="text" id="word-input" placeholder="Type a word (e.g., Run, Study, Make)" class="flex-grow p-3 outline-none text-lg text-gray-700 bg-transparent" autocomplete="off" onkeypress="if(event.key==='Enter') views.handleWordSubmit()">
-                            <button onclick="views.handleWordSubmit()" class="bg-blue-600 text-white px-6 md:px-8 py-2 rounded-xl font-bold hover:bg-blue-700 transition shadow-md shadow-blue-200"><i class="fas fa-search md:hidden"></i><span class="hidden md:inline">Ask Chitti</span></button>
+                        <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-3 flex border border-gray-200 dark:border-slate-700 focus-within:border-blue-500 focus-within:ring-4 ring-blue-50 dark:ring-blue-900/20 transition mb-4">
+                            <input type="text" id="word-input" placeholder="Type a word (e.g., Run, Study)" class="flex-grow p-3 outline-none text-lg text-gray-700 dark:text-white bg-transparent" onkeypress="if(event.key==='Enter') views.handleWordSubmit()">
+                            <button onclick="views.handleWordSubmit()" class="bg-blue-600 text-white px-6 md:px-8 py-2 rounded-xl font-bold hover:bg-blue-700 transition shadow-md shadow-blue-200 dark:shadow-none"><span class="hidden md:inline">Ask Chitti</span><i class="fas fa-search md:hidden"></i></button>
                         </div>
-                        
-                        <!-- Suggestions -->
-                        <div class="flex flex-wrap justify-center items-center gap-2 mb-8">
-                            <span class="text-xs text-gray-400 uppercase font-bold tracking-wider mr-1"><i class="fas fa-random mr-1"></i>Try:</span>
-                            ${suggestionsHtml}
-                        </div>
-
                         <div id="word-result" class="space-y-6 min-h-[200px]"></div>
                     </div>
                 `;
@@ -392,127 +541,130 @@
                  const input = document.getElementById('word-input').value.trim();
                  if(!input) return;
                  const resDiv = document.getElementById('word-result');
-                 resDiv.innerHTML = `<div class="flex flex-col items-center py-12"><div class="loader mb-4"></div><p class="text-gray-500 text-sm font-medium animate-pulse">Chitti is thinking...</p></div>`;
-                 
+                 resDiv.innerHTML = `<div class="flex flex-col items-center py-12"><div class="loader mb-4"></div><p class="text-gray-500 dark:text-gray-400 text-sm font-medium animate-pulse">Chitti is thinking...</p></div>`;
                  const data = await aiService.generateContent('word_explainer', input);
-                 
                  if (data && data.error === 'demo_limit') {
-                    resDiv.innerHTML = `<div class="bg-white p-8 rounded-2xl shadow-sm border border-orange-200 text-center fade-in"><div class="w-16 h-16 bg-orange-100 text-orange-500 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl"><i class="fas fa-lock"></i></div><h3 class="text-lg font-bold text-gray-800 mb-2">Word Not Found in Demo</h3><p class="text-gray-600 mb-6 max-w-md mx-auto">Please add your free API Key in settings for unlimited words.</p><button onclick="app.toggleSettings()" class="bg-blue-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-700">Add API Key</button></div>`;
+                    resDiv.innerHTML = `<div class="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-sm border border-orange-200 dark:border-orange-900/50 text-center"><p class="text-gray-600 dark:text-gray-400">Word not in demo. Add API Key.</p></div>`;
                     return;
                  }
+                 if(data) views.renderWordCard(data, resDiv, false);
+            },
 
-                 if(data) {
-                     const formsHtml = data.forms ? `<div class="grid grid-cols-4 gap-2 text-center text-sm bg-gray-50 p-4 rounded-xl mb-6 border border-gray-100"><div class="bg-white p-2 rounded shadow-sm"><strong class="text-blue-700 block">${data.forms.v1}</strong><span class="text-[10px] text-gray-400">V1 (Base)</span></div><div class="bg-white p-2 rounded shadow-sm"><strong class="text-blue-700 block">${data.forms.v2}</strong><span class="text-[10px] text-gray-400">V2 (Past)</span></div><div class="bg-white p-2 rounded shadow-sm"><strong class="text-blue-700 block">${data.forms.v3}</strong><span class="text-[10px] text-gray-400">V3 (Perfect)</span></div><div class="bg-white p-2 rounded shadow-sm"><strong class="text-blue-700 block">${data.forms.ving}</strong><span class="text-[10px] text-gray-400">Continuous</span></div></div>` : '';
-                     
-                     const examplesHtml = data.examples.map(ex => `
-                        <div class="flex gap-3 items-start group">
-                            <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-300 group-hover:bg-blue-500 transition"></div>
-                            <div class="flex-grow">
-                                <div class="flex justify-between items-start">
-                                    <p class="text-gray-800 font-medium">${ex.eng}</p>
-                                    ${ex.label ? `<span class="text-[10px] bg-blue-50 text-blue-600 px-2 py-0.5 rounded-full uppercase tracking-wide font-bold whitespace-nowrap ml-2">${ex.label}</span>` : ''}
-                                </div>
-                                <p class="text-gray-500 text-sm tamil-text">${ex.tam}</p>
+            renderWordCard: (data, container, isPractice) => {
+                const formsHtml = data.forms && data.forms.v1 !== '-' ? `<div class="grid grid-cols-4 gap-2 text-center text-sm bg-gray-50 dark:bg-slate-900 p-4 rounded-xl mb-6 border border-gray-100 dark:border-slate-700"><div class="bg-white dark:bg-slate-800 p-2 rounded shadow-sm"><strong class="text-blue-700 dark:text-blue-400 block">${data.forms.v1}</strong><span class="text-[10px] text-gray-400">V1</span></div><div class="bg-white dark:bg-slate-800 p-2 rounded shadow-sm"><strong class="text-blue-700 dark:text-blue-400 block">${data.forms.v2}</strong><span class="text-[10px] text-gray-400">V2</span></div><div class="bg-white dark:bg-slate-800 p-2 rounded shadow-sm"><strong class="text-blue-700 dark:text-blue-400 block">${data.forms.v3}</strong><span class="text-[10px] text-gray-400">V3</span></div><div class="bg-white dark:bg-slate-800 p-2 rounded shadow-sm"><strong class="text-blue-700 dark:text-blue-400 block">${data.forms.ving}</strong><span class="text-[10px] text-gray-400">Ving</span></div></div>` : '';
+                
+                const examplesHtml = data.examples.map(ex => `
+                    <div class="flex gap-3 items-start group">
+                        <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-300 dark:bg-blue-500 group-hover:bg-blue-500 dark:group-hover:bg-blue-400 transition"></div>
+                        <div class="flex-grow">
+                            <div class="flex justify-between items-start">
+                                <p class="text-gray-800 dark:text-gray-200 font-medium">${ex.eng}</p>
+                                ${ex.label ? `<span class="text-[10px] bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 px-2 py-0.5 rounded-full uppercase tracking-wide font-bold whitespace-nowrap ml-2">${ex.label}</span>` : ''}
                             </div>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm tamil-text">${ex.tam}</p>
                         </div>
-                     `).join('');
+                    </div>
+                `).join('');
 
-                     const comparisonHtml = data.comparison ? `
-                        <div class="mb-6 bg-orange-50 p-5 rounded-xl border border-orange-100">
-                            <h4 class="text-orange-800 font-bold uppercase text-xs tracking-wider mb-3 flex items-center gap-2">
-                                <i class="fas fa-exclamation-triangle"></i> Don't Confuse With (குழப்ப வேண்டாம்)
-                            </h4>
-                            <div class="flex flex-col md:flex-row gap-4 items-start">
-                                <div class="bg-white p-3 rounded-lg shadow-sm border border-orange-100 flex-1">
-                                    <span class="text-xs text-gray-400 uppercase font-bold">Word</span>
-                                    <p class="text-xl font-bold text-gray-800">${data.comparison.similar_word}</p>
-                                </div>
-                                <div class="flex-[3]">
-                                    <p class="text-gray-700 tamil-text mb-2 font-medium">${data.comparison.difference_tamil}</p>
-                                    <div class="bg-white/50 p-2 rounded text-sm border border-orange-100">
-                                        <p class="text-gray-800">"${data.comparison.example_eng}"</p>
-                                        <p class="text-gray-500 tamil-text text-xs">${data.comparison.example_tam}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                     ` : '';
+                const nextBtn = isPractice ? `<button onclick="views.handlePractice('basic')" class="bg-white/20 hover:bg-white/30 text-white px-3 py-1 rounded-lg text-sm font-bold shadow-lg transition flex items-center gap-1 backdrop-blur-sm"><i class="fas fa-random"></i> Next</button>` : '';
 
-                     resDiv.innerHTML = `
-                        <div class="bg-white rounded-2xl shadow-xl overflow-hidden fade-in border border-gray-100">
-                            <div class="bg-gradient-to-r from-blue-600 to-indigo-700 p-6 text-white">
+                container.innerHTML = `
+                    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl overflow-hidden fade-in border border-gray-100 dark:border-slate-700">
+                        <div class="bg-gradient-to-r from-blue-600 to-indigo-700 p-6 text-white">
+                            <div class="flex justify-between items-start">
                                 <h1 class="text-4xl font-bold mb-2">${data.word}</h1>
-                                <div class="flex items-center gap-3 opacity-90">
-                                    <p class="tamil-text text-xl font-medium text-blue-100">${data.tamil_meaning}</p>
-                                    <span class="w-1 h-1 bg-white rounded-full"></span>
-                                    <span class="font-mono bg-white/20 px-2 py-0.5 rounded text-sm">${data.pronunciation}</span>
-                                    <span class="bg-white/20 px-2 py-0.5 rounded text-sm ml-auto uppercase tracking-wider">${data.part_of_speech}</span>
-                                </div>
+                                ${nextBtn}
                             </div>
-                            
-                            <div class="p-6">
-                                ${formsHtml}
-                                
-                                <div class="mb-6">
-                                    <h4 class="text-gray-400 font-bold uppercase text-xs tracking-wider mb-2">Usage Context (பயன்பாடு)</h4>
-                                    <div class="text-gray-700 tamil-text bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500 leading-relaxed">
-                                        ${data.usage_tamil}
-                                    </div>
-                                </div>
-
-                                ${comparisonHtml}
-
-                                <div class="mb-6">
-                                    <h4 class="text-gray-400 font-bold uppercase text-xs tracking-wider mb-2 flex items-center gap-2">
-                                        <i class="fas fa-list-ul"></i> 10+ Examples (உதாரணங்கள்)
-                                    </h4>
-                                    <div class="space-y-4 bg-gray-50 p-4 rounded-xl border border-gray-100 h-64 overflow-y-auto custom-scrollbar">
-                                        ${examplesHtml}
-                                    </div>
-                                </div>
-                                
-                                <button onclick='views.saveToVocab(${JSON.stringify(data).replace(/'/g, "&#39;")})' class="w-full flex items-center justify-center gap-2 bg-gray-900 text-white hover:bg-black px-6 py-2.5 rounded-xl transition shadow-lg shadow-gray-200">
-                                    <i class="far fa-bookmark"></i> Save to Vocab
-                                </button>
+                            <div class="flex items-center gap-3 opacity-90">
+                                <p class="tamil-text text-xl font-medium text-blue-100">${data.tamil_meaning}</p>
+                                <span class="w-1 h-1 bg-white rounded-full"></span>
+                                <span class="font-mono bg-white/20 px-2 py-0.5 rounded text-sm">${data.pronunciation}</span>
+                                <span class="bg-white/20 px-2 py-0.5 rounded text-sm ml-auto uppercase tracking-wider">${data.part_of_speech}</span>
                             </div>
-                        </div>`;
-                 }
+                        </div>
+                        
+                        <div class="p-6">
+                            ${formsHtml}
+                            <div class="mb-6">
+                                <h4 class="text-gray-400 dark:text-gray-500 font-bold uppercase text-xs tracking-wider mb-2">Usage (பயன்பாடு)</h4>
+                                <div class="text-gray-700 dark:text-gray-200 tamil-text bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500 leading-relaxed">${data.usage_tamil}</div>
+                            </div>
+                            <div class="mb-6">
+                                <h4 class="text-gray-400 dark:text-gray-500 font-bold uppercase text-xs tracking-wider mb-2">Examples</h4>
+                                <div class="space-y-4 bg-gray-50 dark:bg-slate-900 p-4 rounded-xl border border-gray-100 dark:border-slate-700 h-64 overflow-y-auto custom-scrollbar">${examplesHtml}</div>
+                            </div>
+                            <button onclick='views.saveToVocab(${JSON.stringify(data).replace(/'/g, "&#39;")})' class="w-full flex items-center justify-center gap-2 bg-gray-900 dark:bg-black text-white hover:bg-black dark:hover:bg-gray-900 px-6 py-2.5 rounded-xl transition shadow-lg shadow-gray-200 dark:shadow-none">
+                                <i class="far fa-bookmark"></i> Save to Vocab
+                            </button>
+                        </div>
+                    </div>`;
             },
             
             renderFixer: (container) => {
-                 container.innerHTML = `<div class="max-w-2xl mx-auto fade-in"><div class="text-center mb-8"><h2 class="text-2xl font-bold text-gray-800 mb-2">Grammar Fixer</h2><p class="text-gray-500 tamil-text">தவறான வாக்கியத்தை கொடுங்கள், காரணத்துடன் திருத்துகிறோம்.</p></div><div class="bg-white p-2 rounded-2xl shadow-lg border border-gray-200 focus-within:ring-4 focus-within:ring-orange-100 transition"><textarea id="fixer-input" rows="3" placeholder="Type incorrect sentence (e.g. 'I didn't went there')" class="w-full p-4 rounded-xl outline-none resize-none text-lg text-gray-700"></textarea><div class="flex justify-between items-center px-4 pb-2"><span class="text-xs text-gray-400">Press Check to analyze</span><button onclick="views.handleFixerSubmit()" class="bg-secondary text-white px-6 py-2 rounded-xl font-bold hover:bg-orange-600 transition shadow-md shadow-orange-200 flex items-center gap-2"><i class="fas fa-check"></i> Check</button></div></div><div id="fixer-result" class="mt-8 space-y-4"></div></div>`;
+                 container.innerHTML = `<div class="max-w-2xl mx-auto fade-in"><div class="text-center mb-8"><h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">Grammar Fixer</h2><p class="text-gray-500 dark:text-gray-400 tamil-text">தவறான வாக்கியத்தை கொடுங்கள், காரணத்துடன் திருத்துகிறோம்.</p></div><div class="bg-white dark:bg-slate-800 p-2 rounded-2xl shadow-lg border border-gray-200 dark:border-slate-700 focus-within:ring-4 focus-within:ring-orange-100 dark:focus-within:ring-orange-900/30 transition"><textarea id="fixer-input" rows="3" placeholder="Type incorrect sentence..." class="w-full p-4 rounded-xl outline-none resize-none text-lg text-gray-700 dark:text-white bg-transparent"></textarea><div class="flex justify-between items-center px-4 pb-2"><button onclick="views.handleFixerSubmit()" class="bg-secondary text-white px-6 py-2 rounded-xl font-bold hover:bg-orange-600 transition shadow-md shadow-orange-200 dark:shadow-none flex items-center gap-2 ml-auto">Check</button></div></div><div id="fixer-result" class="mt-8 space-y-4"></div></div>`;
             },
-            
             handleFixerSubmit: async () => {
                 const input = document.getElementById('fixer-input').value.trim();
                 if(!input) return;
                 const resDiv = document.getElementById('fixer-result');
                 resDiv.innerHTML = `<div class="flex flex-col items-center py-8"><div class="loader mb-2"></div></div>`;
                 const data = await aiService.generateContent('correction', input);
-                if(data) {
-                    const statusColor = data.is_correct ? 'green' : 'red';
-                    const icon = data.is_correct ? 'check-circle' : 'times-circle';
-                    resDiv.innerHTML = `<div class="bg-white rounded-2xl shadow-lg overflow-hidden fade-in border border-gray-100"><div class="p-6"><div class="flex items-start gap-4 mb-6"><div class="bg-${statusColor}-50 p-3 rounded-full shrink-0"><i class="fas fa-${icon} text-2xl text-${statusColor}-500"></i></div><div class="flex-grow"><p class="text-gray-400 text-sm mb-1 uppercase tracking-wide font-bold">Original</p><p class="text-gray-500 line-through text-lg mb-4 bg-gray-50 inline-block px-2 rounded">${input}</p><p class="text-gray-400 text-sm mb-1 uppercase tracking-wide font-bold text-${statusColor}-600">Corrected</p><p class="text-2xl font-bold text-gray-800">${data.correction}</p></div></div><div class="bg-blue-50 p-5 rounded-xl border border-blue-100"><h4 class="font-bold text-blue-800 text-sm mb-2 uppercase tracking-wide">Chitti's Logic (விளக்கம்)</h4><p class="text-gray-700 tamil-text leading-relaxed">${data.reason_tamil}</p></div></div></div>`;
-                }
+                if(data) resDiv.innerHTML = `<div class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 border border-gray-100 dark:border-slate-700 fade-in"><p class="text-gray-500 dark:text-gray-400 line-through mb-2">${input}</p><p class="text-2xl font-bold text-green-600 dark:text-green-400 mb-4">${data.correction}</p><div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-xl"><p class="text-gray-700 dark:text-gray-300 tamil-text">${data.reason_tamil}</p></div></div>`;
             },
-            
+
             renderVocab: (container) => {
                 const list = app.vocabList;
                 if(list.length === 0) {
-                    container.innerHTML = `<div class="text-center py-20 text-gray-400 fade-in"><div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-folder-open text-3xl opacity-30"></i></div><p class="text-lg">Your vocabulary list is empty.</p><button onclick="app.navigate('word360')" class="mt-4 text-blue-600 font-bold hover:underline">Start Learning Words</button></div>`;
+                    container.innerHTML = `<div class="text-center py-20 text-gray-400 dark:text-gray-500 fade-in"><div class="w-20 h-20 bg-gray-100 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-4"><i class="fas fa-folder-open text-3xl opacity-30"></i></div><p class="text-lg">Your list is empty.</p><button onclick="app.navigate('practice')" class="mt-4 text-blue-600 dark:text-blue-400 font-bold hover:underline">Start Practice</button></div>`;
                     return;
                 }
-                const itemsHtml = list.map((item, index) => `<div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition group relative overflow-hidden"><div class="absolute left-0 top-0 bottom-0 w-1 bg-blue-500"></div><div class="flex justify-between items-start"><div><div class="flex items-baseline gap-2 mb-1"><h3 class="font-bold text-xl text-gray-800">${item.word}</h3><span class="text-xs bg-gray-100 px-2 py-0.5 rounded text-gray-500 font-mono">${item.pronunciation}</span></div><p class="text-blue-600 tamil-text font-medium">${item.tamil_meaning}</p></div><button onclick="views.deleteVocab(${index})" class="w-8 h-8 rounded-full hover:bg-red-50 text-gray-300 hover:text-red-500 transition flex items-center justify-center"><i class="fas fa-trash-alt"></i></button></div></div>`).join('');
-                container.innerHTML = `<div class="max-w-3xl mx-auto fade-in"><div class="flex justify-between items-center mb-6"><h2 class="text-2xl font-bold text-gray-800">My Vocabulary <span class="bg-blue-100 text-blue-700 text-sm px-2 py-1 rounded-full ml-2">${list.length}</span></h2><button onclick="views.exportVocab()" class="text-gray-600 text-sm font-medium hover:text-blue-600 flex items-center gap-2 bg-white px-3 py-1.5 rounded-lg border shadow-sm"><i class="fas fa-file-export"></i> Export</button></div><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${itemsHtml}</div></div>`;
+                
+                const itemsHtml = list.map((item, index) => {
+                    if (item.type === 'sentence') {
+                        return `
+                            <div class="bg-white dark:bg-slate-800 p-5 rounded-xl shadow-sm border border-gray-100 dark:border-slate-700 hover:shadow-md transition group relative overflow-hidden">
+                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-purple-500"></div>
+                                <div class="flex justify-between items-start mb-2">
+                                    <span class="text-[10px] bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 px-2 py-0.5 rounded uppercase font-bold tracking-wide">Sentence</span>
+                                    <button onclick="views.deleteVocab(${index})" class="text-gray-300 hover:text-red-500 transition"><i class="fas fa-trash-alt"></i></button>
+                                </div>
+                                <h3 class="font-bold text-lg text-gray-800 dark:text-gray-100 mb-1 leading-snug">"${item.sentence}"</h3>
+                                <p class="text-purple-600 dark:text-purple-400 tamil-text text-sm mb-3">${item.tamil_meaning}</p>
+                                <div class="bg-gray-50 dark:bg-slate-900 p-2 rounded text-xs text-gray-500 dark:text-gray-400 line-clamp-2">${item.explanation}</div>
+                            </div>
+                        `;
+                    } else {
+                        return `
+                            <div class="bg-white dark:bg-slate-800 p-5 rounded-xl shadow-sm border border-gray-100 dark:border-slate-700 hover:shadow-md transition group relative overflow-hidden">
+                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-blue-500"></div>
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <div class="flex items-baseline gap-2 mb-1">
+                                            <h3 class="font-bold text-xl text-gray-800 dark:text-white">${item.word}</h3>
+                                            <span class="text-xs bg-gray-100 dark:bg-slate-700 px-2 py-0.5 rounded text-gray-500 dark:text-gray-400 font-mono">${item.pronunciation}</span>
+                                        </div>
+                                        <p class="text-blue-600 dark:text-blue-400 tamil-text font-medium text-sm">${item.tamil_meaning}</p>
+                                    </div>
+                                    <button onclick="views.deleteVocab(${index})" class="text-gray-300 hover:text-red-500 transition"><i class="fas fa-trash-alt"></i></button>
+                                </div>
+                            </div>
+                        `;
+                    }
+                }).join('');
+                
+                container.innerHTML = `<div class="max-w-4xl mx-auto fade-in"><div class="flex justify-between items-center mb-6"><h2 class="text-2xl font-bold text-gray-800 dark:text-white">My Saved Items <span class="bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-sm px-2 py-1 rounded-full ml-2">${list.length}</span></h2></div><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${itemsHtml}</div></div>`;
             },
             
-            saveToVocab: (wordData) => {
-                if (!app.vocabList.some(w => w.word === wordData.word)) {
-                    app.vocabList.unshift(wordData);
+            saveToVocab: (data) => {
+                const key = data.type === 'sentence' ? data.sentence : data.word;
+                const exists = app.vocabList.some(item => (item.type === 'sentence' ? item.sentence : item.word) === key);
+                
+                if (!exists) {
+                    app.vocabList.unshift(data);
                     localStorage.setItem('chitti_vocab', JSON.stringify(app.vocabList));
-                    app.toast("Saved to My Vocab!", "success");
+                    app.toast("Saved to List!", "success");
                 } else {
-                    app.toast("Already in your list.", "info");
+                    app.toast("Already saved.", "info");
                 }
             },
             
@@ -520,161 +672,48 @@
                 app.vocabList.splice(index, 1);
                 localStorage.setItem('chitti_vocab', JSON.stringify(app.vocabList));
                 views.renderVocab(document.getElementById('app-content'));
-                app.toast("Word removed.", "info");
+                app.toast("Item removed.", "info");
             },
 
-            exportVocab: () => {
-                const text = app.vocabList.map(w => `${w.word} (${w.pronunciation}) - ${w.tamil_meaning}\nUsage: ${w.usage_tamil}\n---`).join('\n');
-                const blob = new Blob([text], { type: 'text/plain' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'my-chitti-vocab.txt';
-                a.click();
-            },
-
-            // --- ROLEPLAY (Same as before) ---
-            renderRoleplay: (container) => {
-                container.innerHTML = `
-                    <div class="max-w-2xl mx-auto fade-in h-[calc(100vh-140px)] flex flex-col">
-                        <div class="flex justify-between items-center mb-4 flex-wrap gap-2">
-                            <h2 class="text-xl font-bold text-gray-800">Roleplay Chat</h2>
-                            <div class="flex gap-2 items-center flex-wrap">
-                                <select id="scenario-select" onchange="views.changeScenario()" class="bg-white border border-gray-300 rounded-lg text-sm px-3 py-1 outline-none">
-                                    <option value="Coffee Shop">☕ Coffee Shop</option>
-                                    <option value="Job Interview">💼 Job Interview</option>
-                                    <option value="Grocery Store">🛒 Grocery Store</option>
-                                    <option value="Asking Directions">🗺️ Asking Directions</option>
-                                    <option value="Friend">👫 Friend</option>
-                                    <option value="Girlfriend">❤️ Girlfriend</option>
-                                </select>
-                                <div class="flex items-center gap-2 text-sm text-gray-600 bg-white px-2 py-1 rounded border border-gray-200">
-                                    <input type="checkbox" id="chat-translate-toggle" onchange="views.toggleChatTranslation()" class="rounded text-purple-600 focus:ring-purple-500">
-                                    <label for="chat-translate-toggle" class="whitespace-nowrap cursor-pointer select-none">Show Tamil</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="chat-window" class="flex-grow bg-white rounded-2xl shadow-lg border border-gray-200 p-4 overflow-y-auto mb-4 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
-                            <div class="chat-bubble chat-ai">
-                                <p>Hello! I'm the barista at this coffee shop. What can I get for you today?</p>
-                                <p class="translation-text text-sm text-gray-500 mt-2 pt-2 border-t border-gray-100 tamil-text hidden">வணக்கம்! காபி ஷாப்பிற்கு வரவேற்கிறோம். இன்று உங்களுக்கு என்ன வேண்டும்?</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-2">
-                            <input type="text" id="chat-input" placeholder="Type your reply..." class="flex-grow p-3 rounded-xl border border-gray-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 outline-none transition" onkeypress="if(event.key==='Enter') views.handleChatSubmit()">
-                            <button onclick="views.handleChatSubmit()" class="bg-purple-600 text-white w-12 h-12 rounded-xl flex items-center justify-center hover:bg-purple-700 transition shadow-lg shadow-purple-200"><i class="fas fa-paper-plane"></i></button>
-                        </div>
-                    </div>
-                `;
+            renderRoleplayUI: (container) => {
+                container.innerHTML = `<div class="max-w-2xl mx-auto fade-in flex flex-col h-[calc(100vh-140px)]"><div class="flex justify-between items-center mb-4"><h2 class="text-xl font-bold text-gray-800 dark:text-white">Roleplay</h2><select id="scenario-select" onchange="views.changeScenario()" class="bg-white dark:bg-slate-800 dark:text-white border dark:border-slate-700 rounded px-2 py-1 text-sm"><option value="Coffee Shop">Coffee Shop</option><option value="Friend">Friend</option></select></div><div id="chat-window" class="flex-grow bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-gray-200 dark:border-slate-700 p-4 overflow-y-auto mb-4 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"><div class="chat-bubble chat-ai"><p>Hello! Welcome to the coffee shop.</p></div></div><div class="flex gap-2"><input type="text" id="chat-input" placeholder="Type reply..." class="flex-grow p-3 rounded-xl border dark:border-slate-700 bg-white dark:bg-slate-800 text-gray-800 dark:text-white outline-none" onkeypress="if(event.key==='Enter') views.handleChatSubmit()"><button onclick="views.handleChatSubmit()" class="bg-purple-600 text-white w-12 h-12 rounded-xl flex items-center justify-center"><i class="fas fa-paper-plane"></i></button></div></div>`;
                 app.roleplayContext = { scenario: 'Coffee Shop', history: [] };
             },
-
             changeScenario: () => {
-                const scenario = document.getElementById('scenario-select').value;
-                app.roleplayContext = { scenario: scenario, history: [] };
-                const chatWindow = document.getElementById('chat-window');
-                const greetings = { 
-                    "Coffee Shop": "Hello! I'm the barista. What would you like to drink?", 
-                    "Job Interview": "Good morning. Please take a seat. Tell me about yourself.", 
-                    "Grocery Store": "Hi there! Can I help you find anything in the store?", 
-                    "Asking Directions": "Excuse me? You look lost. Can I help you find a place?",
-                    "Friend": "Hey buddy! Long time no see. How have you been?",
-                    "Girlfriend": "Hey sweetie! How was your day today?"
-                };
-                const translations = {
-                    "Coffee Shop": "வணக்கம்! நான் பாரிஸ்டா. உங்களுக்கு என்ன வேண்டும்?",
-                    "Job Interview": "காலை வணக்கம். அமருங்கள். உங்களைப் பற்றி சொல்லுங்கள்.",
-                    "Grocery Store": "வணக்கம்! கடையில் ஏதாவது தேட உதவி வேண்டுமா?",
-                    "Asking Directions": "மன்னிக்கவும்? நீங்கள் வழி தவறியது போல் தெரிகிறது. நான் உதவலாமா?",
-                    "Friend": "ஹே நண்பா! பார்த்து ரொம்ப நாளாச்சு. எப்படி இருக்க?",
-                    "Girlfriend": "ஹே கண்ணம்மா! இன்று உன் நாள் எப்படி இருந்தது?"
-                };
-                
-                const showTamil = document.getElementById('chat-translate-toggle').checked;
-                
-                chatWindow.innerHTML = `
-                    <div class="chat-bubble chat-ai fade-in">
-                        <p>${greetings[scenario]}</p>
-                        <p class="translation-text text-sm text-gray-500 mt-2 pt-2 border-t border-gray-100 tamil-text ${showTamil ? '' : 'hidden'}">${translations[scenario]}</p>
-                    </div>
-                `;
+                const s = document.getElementById('scenario-select').value;
+                app.roleplayContext = { scenario: s, history: [] };
+                document.getElementById('chat-window').innerHTML = `<div class="chat-bubble chat-ai fade-in"><p>Hello! (Scenario: ${s})</p></div>`;
             },
-
             handleChatSubmit: async () => {
-                const inputEl = document.getElementById('chat-input');
-                const text = inputEl.value.trim();
-                if(!text) return;
-                const chatWindow = document.getElementById('chat-window');
-                chatWindow.innerHTML += `<div class="chat-bubble chat-user fade-in"><p>${text}</p></div>`;
-                inputEl.value = '';
-                chatWindow.scrollTop = chatWindow.scrollHeight;
-                const loaderId = 'typing-' + Date.now();
-                chatWindow.innerHTML += `<div id="${loaderId}" class="chat-bubble chat-ai fade-in w-16"><div class="flex gap-1 justify-center"><div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div><div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></div><div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.4s"></div></div></div>`;
-                chatWindow.scrollTop = chatWindow.scrollHeight;
-                
-                const data = await aiService.generateContent('roleplay', text, app.roleplayContext);
-                document.getElementById(loaderId).remove();
-                
-                const showTamil = document.getElementById('chat-translate-toggle').checked;
-
+                const inp = document.getElementById('chat-input');
+                const txt = inp.value.trim();
+                if(!txt) return;
+                const win = document.getElementById('chat-window');
+                win.innerHTML += `<div class="chat-bubble chat-user fade-in"><p>${txt}</p></div>`;
+                inp.value = '';
+                win.scrollTop = win.scrollHeight;
+                const data = await aiService.generateContent('roleplay', txt, app.roleplayContext);
                 if(data) {
-                    if(data.correction) chatWindow.innerHTML += `<div class="text-xs text-center text-gray-400 mb-2 fade-in"><span class="bg-yellow-50 text-yellow-700 border border-yellow-200 px-2 py-1 rounded">Tip: "${data.correction}"</span></div>`;
-                    
-                    chatWindow.innerHTML += `
-                        <div class="chat-bubble chat-ai fade-in">
-                            <p>${data.reply}</p>
-                            <p class="translation-text text-sm text-gray-500 mt-2 pt-2 border-t border-gray-100 tamil-text ${showTamil ? '' : 'hidden'}">${data.reply_tamil || ''}</p>
-                        </div>
-                    `;
-                    
-                    app.roleplayContext.history.push({ sender: 'User', text: text });
-                    app.roleplayContext.history.push({ sender: 'AI', text: data.reply });
-                    if(app.roleplayContext.history.length > 6) app.roleplayContext.history.shift();
+                    if(data.correction) win.innerHTML += `<div class="text-xs text-center text-gray-400 mb-2"><span class="bg-yellow-50 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300 px-2 py-1 rounded">Tip: ${data.correction}</span></div>`;
+                    win.innerHTML += `<div class="chat-bubble chat-ai fade-in"><p>${data.reply}</p></div>`;
+                    app.roleplayContext.history.push({sender:'User', text:txt}, {sender:'AI', text:data.reply});
+                    win.scrollTop = win.scrollHeight;
                 }
-                chatWindow.scrollTop = chatWindow.scrollHeight;
             },
-            
-            toggleChatTranslation: () => {
-                const checked = document.getElementById('chat-translate-toggle').checked;
-                document.querySelectorAll('.translation-text').forEach(el => {
-                    if(checked) el.classList.remove('hidden');
-                    else el.classList.add('hidden');
-                });
-            },
-
-            // --- TRANSLATOR (Same as before) ---
             renderTranslator: (container) => {
-                container.innerHTML = `
-                    <div class="max-w-2xl mx-auto fade-in">
-                        <div class="text-center mb-8">
-                            <h2 class="text-2xl font-bold text-gray-800 mb-2">Smart Translator</h2>
-                            <p class="text-gray-500 tamil-text">ஆங்கில மொழிபெயர்ப்பின் 'காரணத்தை' புரிந்து கொள்ளுங்கள்.</p>
-                        </div>
-                        <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200 mb-8">
-                            <label class="block text-sm font-bold text-gray-500 mb-2 uppercase">Tamil Sentence (தமிழ்)</label>
-                            <textarea id="trans-input" rows="2" placeholder="நான் நாளை சென்னைக்கு செல்கிறேன்..." class="w-full p-3 rounded-xl border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 outline-none tamil-text text-lg"></textarea>
-                            <div class="flex justify-end mt-3"><button onclick="views.handleTransSubmit()" class="bg-indigo-600 text-white px-6 py-2 rounded-xl font-bold hover:bg-indigo-700 transition shadow-md shadow-indigo-200">Translate & Explain</button></div>
-                        </div>
-                        <div id="trans-result"></div>
-                    </div>
-                `;
+                 container.innerHTML = `<div class="max-w-2xl mx-auto fade-in"><h2 class="text-2xl font-bold text-center mb-6 text-gray-800 dark:text-white">Smart Translator</h2><div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-md border dark:border-slate-700"><textarea id="trans-input" rows="2" placeholder="Tamil sentence..." class="w-full p-2 outline-none tamil-text bg-transparent text-gray-800 dark:text-white"></textarea><button onclick="views.handleTrans()" class="w-full bg-indigo-600 text-white py-2 rounded-lg mt-2 font-bold">Translate</button></div><div id="trans-res" class="mt-6"></div></div>`;
             },
-
-            handleTransSubmit: async () => {
-                const input = document.getElementById('trans-input').value.trim();
-                if(!input) return;
-                const resDiv = document.getElementById('trans-result');
-                resDiv.innerHTML = `<div class="flex flex-col items-center py-8"><div class="loader mb-2"></div></div>`;
-                const data = await aiService.generateContent('translator', input);
-                if(data) {
-                    const mappingHtml = data.word_mapping.map(m => `<div class="flex flex-col items-center p-2 bg-gray-50 rounded border border-gray-100"><span class="text-indigo-600 font-bold text-sm">${m.eng}</span><i class="fas fa-arrow-up text-gray-300 text-xs my-1"></i><span class="text-gray-500 text-xs tamil-text text-center">${m.tam}</span></div>`).join('');
-                    resDiv.innerHTML = `<div class="bg-white rounded-2xl shadow-xl overflow-hidden fade-in border border-indigo-100"><div class="bg-indigo-50 p-6 border-b border-indigo-100"><p class="text-gray-500 text-xs font-bold uppercase mb-1">English Translation</p><h2 class="text-2xl font-bold text-indigo-900">${data.english}</h2></div><div class="p-6"><div class="mb-6"><h4 class="text-gray-400 font-bold uppercase text-xs tracking-wider mb-3">Word Mapping</h4><div class="flex flex-wrap gap-2">${mappingHtml}</div></div><div class="bg-yellow-50 p-4 rounded-xl border border-yellow-100"><h4 class="text-yellow-700 font-bold text-sm mb-2 flex items-center gap-2"><i class="fas fa-lightbulb"></i> Grammar Logic</h4><p class="text-gray-700 leading-relaxed">${data.grammar_note}</p></div></div></div>`;
-                }
+            handleTrans: async () => {
+                const txt = document.getElementById('trans-input').value;
+                if(!txt) return;
+                const res = document.getElementById('trans-res');
+                res.innerHTML = '<div class="loader mx-auto"></div>';
+                const data = await aiService.generateContent('translator', txt);
+                if(data) res.innerHTML = `<div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg border dark:border-slate-700"><h3 class="text-xl font-bold text-indigo-900 dark:text-indigo-400 mb-2">${data.english}</h3><p class="text-gray-600 dark:text-gray-300 text-sm">${data.grammar_note}</p></div>`;
             }
         };
 
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
-            app.updateApiStatus();
-            app.navigate('home');
+            app.init();
         });
