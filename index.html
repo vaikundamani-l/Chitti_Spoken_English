@@ -1,213 +1,364 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ta" class="light">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chitti English - AI English Tutor</title>
-
-    <!-- Tailwind CSS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Chitti English | சிட்டி ஆங்கிலம்</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Mukta+Malar:wght@400;500;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Google Fonts: Noto Sans Tamil & Poppins -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
-        <script>
+    <script>
         tailwind.config = {
-            darkMode: 'class', // Enable class-based dark mode
+            darkMode: 'class',
             theme: {
                 extend: {
-                    colors: {
-                        primary: '#2563EB', 
-                        secondary: '#F59E0B', 
-                        dark: '#1E293B',
-                        bg: '#F3F4F6',
-                        'bg-soft': '#EFF6FF',
-                    },
                     fontFamily: {
-                        sans: ['Poppins', 'sans-serif'],
-                        tamil: ['Noto Sans Tamil', 'sans-serif'],
+                        sans: ['Inter', 'Mukta Malar', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    spacing: {
+                        'safe-bottom': 'env(safe-area-inset-bottom)',
                     }
                 }
             }
         }
     </script>
 
+    <link rel="stylesheet" href="styles.css">
 </head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 h-[100dvh] flex flex-col overflow-hidden selection:bg-blue-200 dark:selection:bg-blue-900 transition-colors duration-300">
 
-<body class="min-h-screen flex flex-col font-sans selection:bg-blue-200 dark:selection:bg-blue-900 bg-[#F3F4F6] text-[#1E293B] dark:bg-slate-900 dark:text-slate-200 transition-colors duration-300">
-
-    <!-- Navbar -->
-    <nav class="bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-gray-200 dark:border-slate-800 transition-colors duration-300">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <!-- Logo -->
-            <div class="flex items-center gap-3 cursor-pointer group" onclick="app.navigate('home')">
-                <div
-                    class="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center text-white text-xl shadow-lg group-hover:scale-105 transition duration-300">
-                    <i class="fas fa-robot"></i>
+    <header class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800 z-20 shrink-0 sticky top-0">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center gap-3 cursor-pointer group" onclick="app.navigate('home')">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center text-white shadow-md shadow-blue-500/20 group-active:scale-95 transition-all">
+                        <i class="ph-fill ph-robot text-2xl"></i>
+                    </div>
+                    <div class="flex flex-col justify-center">
+                        <h1 class="text-xl font-extrabold text-slate-900 dark:text-white leading-none tracking-tight">Chitti</h1>
+                        <p class="text-[10px] text-blue-600 dark:text-blue-400 font-bold uppercase tracking-widest mt-0.5">English</p>
+                    </div>
                 </div>
-                <div>
-                    <h1 class="text-xl font-bold text-gray-800 dark:text-white leading-none tracking-tight">Chitti <span
-                            class="text-blue-600 dark:text-blue-400">English</span></h1>
-                    <p class="text-[10px] text-gray-500 dark:text-gray-400 tamil-text font-medium tracking-wide">சிட்டி ஆங்கிலம்</p>
+                
+                <nav class="hidden md:flex space-x-1 h-full items-center">
+                    <button onclick="app.navigate('grammar')" id="desktop-nav-grammar" class="relative h-full px-5 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center gap-2">
+                        <i class="ph ph-magic-wand text-lg"></i> Grammar
+                    </button>
+                    <button onclick="app.navigate('translator')" id="desktop-nav-translator" class="relative h-full px-5 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center gap-2">
+                        <i class="ph ph-translate text-lg"></i> Translator
+                    </button>
+                    <button onclick="app.navigate('story')" id="desktop-nav-story" class="relative h-full px-5 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center gap-2">
+                        <i class="ph ph-book-open-text text-lg"></i> Story
+                    </button>
+                </nav>
+
+                <div class="flex items-center gap-1 sm:gap-2">
+                    <button onclick="app.toggleDarkMode()" class="w-10 h-10 rounded-full flex items-center justify-center text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors active:scale-95" title="Toggle Dark Mode">
+                        <i id="theme-icon" class="ph-fill ph-moon text-xl"></i>
+                    </button>
+                    
+                    <button onclick="app.toggleSettings()" class="relative w-10 h-10 rounded-full flex items-center justify-center text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors active:scale-95">
+                        <i class="ph ph-gear text-xl"></i>
+                        <span id="api-status-dot" class="absolute top-2 right-2 w-2.5 h-2.5 bg-emerald-500 border-2 border-white dark:border-slate-900 rounded-full hidden"></span>
+                    </button>
                 </div>
-            </div>
-
-            <!-- Desktop Nav -->
-            <div class="hidden lg:flex gap-1 bg-gray-100 dark:bg-slate-800 p-1 rounded-lg overflow-x-auto">
-                <button onclick="app.navigate('home')" id="nav-home"
-                    class="px-3 py-1.5 rounded-md text-sm font-medium transition hover:bg-white dark:hover:bg-slate-700 hover:shadow-sm whitespace-nowrap text-gray-600 dark:text-gray-300">Home</button>
-                <button onclick="app.navigate('bonus')" id="nav-bonus"
-                    class="px-3 py-1.5 rounded-md text-sm font-medium transition hover:bg-white dark:hover:bg-slate-700 hover:shadow-sm whitespace-nowrap flex items-center gap-1 text-amber-600 dark:text-amber-400"><i class="fas fa-star text-xs"></i> Daily Bonus</button>
-                <button onclick="app.navigate('practice')" id="nav-practice"
-                    class="px-3 py-1.5 rounded-md text-sm font-medium transition hover:bg-white dark:hover:bg-slate-700 hover:shadow-sm whitespace-nowrap flex items-center gap-1 text-pink-600 dark:text-pink-400"><i class="fas fa-dumbbell text-xs"></i> Practice</button>
-                <button onclick="app.navigate('word360')" id="nav-word360"
-                    class="px-3 py-1.5 rounded-md text-sm font-medium transition hover:bg-white dark:hover:bg-slate-700 hover:shadow-sm whitespace-nowrap text-gray-600 dark:text-gray-300">Word 360°</button>
-                <button onclick="app.navigate('fixer')" id="nav-fixer"
-                    class="px-3 py-1.5 rounded-md text-sm font-medium transition hover:bg-white dark:hover:bg-slate-700 hover:shadow-sm whitespace-nowrap text-gray-600 dark:text-gray-300">Fix Grammar</button>
-                <button onclick="app.navigate('roleplay')" id="nav-roleplay"
-                    class="px-3 py-1.5 rounded-md text-sm font-medium transition hover:bg-white dark:hover:bg-slate-700 hover:shadow-sm whitespace-nowrap flex items-center gap-1 text-gray-600 dark:text-gray-300"><i
-                        class="fas fa-comments text-xs"></i> Roleplay</button>
-                <button onclick="app.navigate('vocab')" id="nav-vocab"
-                    class="px-3 py-1.5 rounded-md text-sm font-medium transition hover:bg-white dark:hover:bg-slate-700 hover:shadow-sm whitespace-nowrap text-gray-600 dark:text-gray-300">My Vocab</button>
-            </div>
-
-            <!-- Settings & Mobile Toggle -->
-            <div class="flex items-center gap-3">
-                <div id="api-status-dot" class="hidden w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse"
-                    title="API Key Active"></div>
-                <button onclick="app.toggleSettings()"
-                    class="w-9 h-9 rounded-full bg-gray-100 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-slate-700 text-gray-600 dark:text-gray-300 hover:text-blue-600 transition flex items-center justify-center">
-                    <i class="fas fa-cog"></i>
-                </button>
-                <button class="lg:hidden text-gray-700 dark:text-gray-200 text-xl w-9 h-9 flex items-center justify-center"
-                    onclick="app.toggleMobileMenu()">
-                    <i class="fas fa-bars"></i>
-                </button>
             </div>
         </div>
+    </header>
 
-        <!-- Mobile Menu -->
-        <div id="mobile-menu"
-            class="hidden lg:hidden glass-menu border-b border-gray-200 dark:border-slate-800 absolute w-full left-0 shadow-lg fade-in z-40">
-            <div class="p-4 flex flex-col gap-2">
-                <button onclick="app.navigate('home')"
-                    class="text-left px-4 py-3 rounded-lg hover:bg-blue-50 dark:hover:bg-slate-800 font-medium flex items-center gap-3 text-gray-700 dark:text-gray-200">
-                    <i class="fas fa-home text-blue-500 w-6"></i> Home
-                </button>
-                <button onclick="app.navigate('bonus')"
-                    class="text-left px-4 py-3 rounded-lg hover:bg-blue-50 dark:hover:bg-slate-800 font-medium flex items-center gap-3 text-gray-700 dark:text-gray-200">
-                    <i class="fas fa-star text-amber-500 w-6"></i> Daily Bonus
-                </button>
-                <button onclick="app.navigate('practice')"
-                    class="text-left px-4 py-3 rounded-lg hover:bg-blue-50 dark:hover:bg-slate-800 font-medium flex items-center gap-3 text-gray-700 dark:text-gray-200">
-                    <i class="fas fa-dumbbell text-pink-500 w-6"></i> Practice
-                </button>
-                <button onclick="app.navigate('word360')"
-                    class="text-left px-4 py-3 rounded-lg hover:bg-blue-50 dark:hover:bg-slate-800 font-medium flex items-center gap-3 text-gray-700 dark:text-gray-200">
-                    <i class="fas fa-cube text-blue-500 w-6"></i> Word 360°
-                </button>
-                <button onclick="app.navigate('fixer')"
-                    class="text-left px-4 py-3 rounded-lg hover:bg-blue-50 dark:hover:bg-slate-800 font-medium flex items-center gap-3 text-gray-700 dark:text-gray-200">
-                    <i class="fas fa-wand-magic-sparkles text-blue-500 w-6"></i> Fix Grammar
-                </button>
-                <button onclick="app.navigate('roleplay')"
-                    class="text-left px-4 py-3 rounded-lg hover:bg-blue-50 dark:hover:bg-slate-800 font-medium flex items-center gap-3 text-gray-700 dark:text-gray-200">
-                    <i class="fas fa-comments text-purple-500 w-6"></i> Roleplay
-                </button>
-                <button onclick="app.navigate('vocab')"
-                    class="text-left px-4 py-3 rounded-lg hover:bg-blue-50 dark:hover:bg-slate-800 font-medium flex items-center gap-3 text-gray-700 dark:text-gray-200">
-                    <i class="fas fa-book-bookmark text-blue-500 w-6"></i> My Vocab
-                </button>
-            </div>
+    <main class="flex-1 overflow-y-auto w-full z-10 relative pb-20 md:pb-6 px-4 sm:px-6 lg:px-8 custom-scrollbar">
+        <div class="max-w-5xl mx-auto h-full pt-4 md:pt-6">
+
+            <section id="home" class="page-section active flex-col justify-center items-center text-center min-h-[calc(100vh-140px)] md:min-h-[calc(100vh-100px)] pb-10">
+                <div class="w-20 h-20 md:w-28 md:h-28 rounded-[2rem] bg-gradient-to-br from-blue-100 to-indigo-100 dark:from-blue-900/50 dark:to-indigo-900/30 flex items-center justify-center mb-6 md:mb-8 shadow-inner border border-white dark:border-slate-700/50">
+                    <i class="ph-fill ph-robot text-5xl md:text-7xl text-blue-600 dark:text-blue-400 drop-shadow-md"></i>
+                </div>
+                <h2 class="text-3xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-4 tracking-tight">Welcome to <br class="md:hidden"/><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">Chitti English</span></h2>
+                <p class="text-base md:text-lg text-slate-600 dark:text-slate-300 mb-10 max-w-2xl leading-relaxed px-4">
+                    உங்கள் தனிப்பட்ட AI ஆங்கில ஆசிரியர். தமிழ் வழி ஆங்கிலம் கற்றுக்கொள்ள ஒரு எளிய தளம்.<br>
+                </p>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 w-full max-w-4xl mx-auto">
+                    <div onclick="app.navigate('grammar')" class="app-card p-6 md:p-8 cursor-pointer hover:-translate-y-1 transition-transform group text-left relative overflow-hidden flex flex-col items-start">
+                        <div class="w-12 h-12 bg-emerald-50 dark:bg-emerald-900/30 rounded-2xl flex items-center justify-center mb-4 border border-emerald-100 dark:border-emerald-800/50 text-emerald-500 dark:text-emerald-400 group-hover:scale-110 transition-transform">
+                            <i class="ph-fill ph-magic-wand text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg md:text-xl mb-2 text-slate-800 dark:text-white">Grammar Fixer</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">வாக்கியப் பிழைகளை திருத்தி விளக்கம் பெறுங்கள்.</p>
+                    </div>
+                    
+                    <div onclick="app.navigate('translator')" class="app-card p-6 md:p-8 cursor-pointer hover:-translate-y-1 transition-transform group text-left relative overflow-hidden flex flex-col items-start">
+                        <div class="w-12 h-12 bg-purple-50 dark:bg-purple-900/30 rounded-2xl flex items-center justify-center mb-4 border border-purple-100 dark:border-purple-800/50 text-purple-500 dark:text-purple-400 group-hover:scale-110 transition-transform">
+                            <i class="ph-fill ph-translate text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg md:text-xl mb-2 text-slate-800 dark:text-white">Translator</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">தமிழ் வாக்கியங்களை இலக்கணக் குறிப்புடன் ஆங்கிலத்தில் மாற்றவும்.</p>
+                    </div>
+
+                    <div onclick="app.navigate('story')" class="app-card p-6 md:p-8 cursor-pointer hover:-translate-y-1 transition-transform group text-left relative overflow-hidden flex flex-col items-start sm:col-span-2 md:col-span-1">
+                        <div class="w-12 h-12 bg-amber-50 dark:bg-amber-900/30 rounded-2xl flex items-center justify-center mb-4 border border-amber-100 dark:border-amber-800/50 text-amber-500 dark:text-amber-400 group-hover:scale-110 transition-transform">
+                            <i class="ph-fill ph-book-open-text text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg md:text-xl mb-2 text-slate-800 dark:text-white">Story Mode</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">எளிய ஆங்கிலக் கதைகளை தமிழ் அர்த்தத்துடன் படியுங்கள்.</p>
+                    </div>
+                </div>
+                
+                <div id="home-status-badge" class="mt-10 md:mt-12 inline-flex items-center gap-2 px-4 py-2 md:px-5 md:py-2.5 rounded-full text-xs md:text-sm font-medium border transition-colors">
+                    </div>
+            </section>
+
+            <section id="grammar" class="page-section flex-col h-full min-h-full">
+                <div class="mb-6 shrink-0 text-center md:text-left">
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white flex items-center justify-center md:justify-start gap-2 md:gap-3">
+                        <i class="ph-fill ph-magic-wand text-emerald-500"></i> Fix Grammar
+                    </h2>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm md:text-base mt-2">Paste a sentence and get precise corrections.</p>
+                </div>
+                
+                <div class="flex flex-col md:flex-row gap-4 md:gap-6 flex-1 pb-4">
+                    <div class="flex flex-col gap-4 w-full md:w-1/2 md:max-w-md shrink-0">
+                        <div class="app-card flex-1 min-h-[160px] md:min-h-[250px] p-4 md:p-6 flex flex-col relative focus-within:ring-2 focus-within:ring-emerald-500 transition-shadow">
+                            <textarea id="grammar-input" placeholder="Type your English sentence here...&#10;&#10;Example: 'I didn't went to the shop.'" class="w-full h-full bg-transparent resize-none outline-none text-base md:text-lg leading-relaxed text-slate-800 dark:text-white placeholder-slate-400 dark:placeholder-slate-500"></textarea>
+                        </div>
+                        <button onclick="views.processGrammar()" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white min-h-[56px] rounded-xl font-bold transition-colors flex items-center justify-center gap-2 text-base shadow-sm active:scale-[0.98]">
+                            <span>Check Sentence</span> <i class="ph-bold ph-check-circle text-xl"></i>
+                        </button>
+                    </div>
+
+                    <div class="flex-1 flex flex-col relative min-h-[300px]">
+                        <div id="grammar-loading" class="hidden absolute inset-0 app-card z-10 flex-col items-center justify-center">
+                            <div class="loader text-emerald-500 border-4 border-t-4 h-12 w-12 rounded-full mb-4"></div>
+                            <p class="text-slate-600 dark:text-slate-300 font-semibold text-sm">Analyzing Grammar...</p>
+                        </div>
+
+                        <div id="grammar-result" class="app-card p-5 md:p-8 flex-1 flex flex-col overflow-y-auto hidden">
+                            <div id="grammar-status-badge" class="inline-flex items-center gap-1.5 px-3 py-1 md:px-4 md:py-1.5 rounded-full text-xs md:text-sm font-bold w-max mb-5"></div>
+                            
+                            <h4 class="text-[11px] md:text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Corrected Sentence</h4>
+                            <div class="p-4 md:p-5 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-900 dark:text-emerald-100 rounded-xl md:rounded-2xl border border-emerald-100 dark:border-emerald-800/30 text-lg md:text-xl font-medium mb-6" id="grammar-correction"></div>
+
+                            <h4 class="text-[11px] md:text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Why? (தமிழ் விளக்கம்)</h4>
+                            <p class="text-slate-700 dark:text-slate-300 leading-relaxed mb-6 text-sm md:text-base bg-slate-50 dark:bg-slate-800/50 p-4 md:p-5 rounded-xl border border-slate-100 dark:border-slate-700/50" id="grammar-reason"></p>
+
+                            <h4 class="text-[11px] md:text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Alternative Ways</h4>
+                            <ul class="list-disc list-inside text-slate-600 dark:text-slate-400 space-y-1.5 ml-1 text-sm md:text-base" id="grammar-alts"></ul>
+                        </div>
+                        
+                        <div id="grammar-empty" class="app-card flex-1 flex flex-col items-center justify-center p-8 text-center bg-slate-50/50 dark:bg-slate-800/20 border-dashed">
+                            <div class="w-16 h-16 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center mb-3 shadow-sm border border-slate-100 dark:border-slate-700">
+                                <i class="ph-fill ph-text-aa text-3xl text-slate-300 dark:text-slate-500"></i>
+                            </div>
+                            <p class="font-medium text-slate-500 dark:text-slate-400 text-sm">Results will appear here.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="translator" class="page-section flex-col h-full min-h-full">
+                <div class="mb-6 shrink-0 text-center md:text-left">
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white flex items-center justify-center md:justify-start gap-2 md:gap-3">
+                        <i class="ph-fill ph-translate text-purple-500"></i> Translator
+                    </h2>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm md:text-base mt-2">Translate Tamil to English with grammar notes.</p>
+                </div>
+
+                <div class="flex flex-col gap-4 md:gap-6 flex-1 pb-4">
+                    <div class="app-card p-2 md:p-3 flex flex-col md:flex-row gap-2">
+                        <textarea id="translator-input" placeholder="தமிழில் தட்டச்சு செய்யவும்...&#10;(எ.கா: நான் நாளை சென்னைக்கு செல்வேன்)" class="flex-1 bg-transparent border-none focus:ring-0 px-4 py-3 md:px-5 md:py-4 outline-none text-base md:text-lg resize-none min-h-[100px] md:min-h-[120px] text-slate-800 dark:text-white placeholder-slate-400"></textarea>
+                        <div class="flex items-end p-2 md:p-0 md:pr-1 md:pb-1">
+                            <button onclick="views.processTranslation()" class="w-full md:w-auto bg-purple-500 hover:bg-purple-600 text-white min-h-[52px] md:min-h-[56px] px-8 rounded-xl font-bold transition-colors flex items-center justify-center gap-2 active:scale-[0.98]">
+                                <span>Translate</span> <i class="ph-bold ph-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="translator-loading" class="hidden flex-col items-center justify-center py-12 app-card">
+                        <div class="loader text-purple-500 border-4 border-t-4 h-10 w-10 md:h-12 md:w-12 rounded-full mb-3"></div>
+                        <p class="text-slate-600 dark:text-slate-300 font-semibold text-sm">Translating...</p>
+                    </div>
+
+                    <div id="translator-result" class="hidden flex-col gap-4 md:gap-6 flex-1">
+                        <div class="app-card p-5 md:p-8 border-l-4 md:border-l-8 border-purple-500 bg-purple-50/30 dark:bg-purple-900/10">
+                            <h4 class="text-[11px] md:text-xs font-bold text-purple-500 dark:text-purple-400 uppercase tracking-widest mb-1.5 md:mb-2">English Translation</h4>
+                            <p class="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight" id="trans-english">-</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 flex-1">
+                            <div class="app-card p-5 md:p-6 flex flex-col">
+                                <h4 class="text-sm md:text-base font-bold text-slate-800 dark:text-slate-200 mb-4 flex items-center gap-2">
+                                    <i class="ph-fill ph-graph text-slate-400"></i> Word Mapping
+                                </h4>
+                                <div class="space-y-2 md:space-y-3 text-sm md:text-base flex-1 overflow-y-auto no-scrollbar max-h-[250px]" id="trans-mapping"></div>
+                            </div>
+                            
+                            <div class="app-card p-5 md:p-6 bg-slate-50 dark:bg-slate-800/50 flex flex-col">
+                                <h4 class="text-sm md:text-base font-bold text-purple-700 dark:text-purple-400 mb-3 flex items-center gap-2">
+                                    <i class="ph-fill ph-info text-purple-500"></i> Grammar Note
+                                </h4>
+                                <p class="text-slate-700 dark:text-slate-300 text-sm md:text-base leading-relaxed" id="trans-grammar">-</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="story" class="page-section flex-col h-full min-h-full">
+                <div class="mb-5 md:mb-6 shrink-0 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+                    <div class="text-center sm:text-left">
+                        <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white flex items-center justify-center sm:justify-start gap-2 md:gap-3">
+                            <i class="ph-fill ph-book-open-text text-amber-500"></i> Story Time
+                        </h2>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm md:text-base mt-1.5">Read simple stories or conversations.</p>
+                    </div>
+                    
+                    <div class="flex p-1 bg-slate-200/50 dark:bg-slate-800 rounded-xl mx-auto sm:mx-0 max-w-[280px] w-full">
+                        <button id="btn-format-story" onclick="views.setStoryFormat('story')" class="flex-1 py-2 rounded-lg text-sm font-bold transition-all bg-white dark:bg-slate-700 text-amber-600 dark:text-amber-400 shadow-sm flex items-center justify-center gap-1.5">
+                            <i class="ph-fill ph-book-open"></i> Story
+                        </button>
+                        <button id="btn-format-dialogue" onclick="views.setStoryFormat('dialogue')" class="flex-1 py-2 rounded-lg text-sm font-bold transition-all text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 flex items-center justify-center gap-1.5">
+                            <i class="ph-fill ph-chats"></i> Chat
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row gap-3 md:gap-4 mb-6 shrink-0">
+                    <div class="relative flex-1 app-card flex items-center overflow-hidden focus-within:ring-2 focus-within:ring-amber-500 transition-shadow">
+                        <div class="pl-4 pr-2 text-amber-400 md:text-lg">
+                            <i class="ph-bold ph-magic-wand"></i>
+                        </div>
+                        <input type="text" id="story-topic" placeholder="Topic (e.g. A clever fox)..." class="w-full bg-transparent py-3 md:py-4 px-2 outline-none text-slate-800 dark:text-white text-base md:text-lg placeholder-slate-400">
+                    </div>
+                    <button onclick="views.processStory()" class="bg-amber-500 hover:bg-amber-600 text-white min-h-[52px] md:min-h-[56px] px-8 rounded-xl font-bold transition-colors flex items-center justify-center gap-2 active:scale-[0.98] w-full md:w-auto">
+                        <span>Generate</span> <i class="ph-bold ph-sparkle"></i>
+                    </button>
+                </div>
+
+                <div id="story-loading" class="hidden flex-col items-center justify-center flex-1 py-12 app-card">
+                    <div class="loader text-amber-500 border-4 border-t-4 h-10 w-10 rounded-full mb-3"></div>
+                    <p class="text-slate-600 dark:text-slate-300 font-semibold text-sm">Writing...</p>
+                </div>
+
+                <div id="story-result" class="hidden flex-1 flex-col pb-6">
+                    <div class="book-page p-5 sm:p-8 md:p-12 flex flex-col relative mx-auto w-full max-w-3xl flex-1">
+                        
+                        <h3 id="story-title" class="text-2xl md:text-3xl font-serif font-extrabold mb-6 md:mb-8 text-center tracking-tight text-slate-900 dark:text-white leading-snug"></h3>
+                        
+                        <div id="story-content" class="text-base md:text-lg leading-[1.8] md:leading-[2.2] space-y-5 md:space-y-6 text-slate-800 dark:text-slate-200"></div>
+                        
+                        <div class="mt-10 md:mt-12 pt-6 md:pt-8 border-t border-dashed border-amber-900/20 dark:border-amber-100/20">
+                            <h4 class="text-[11px] md:text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-3 flex items-center gap-1.5"><i class="ph-fill ph-translate"></i> Tamil Summary</h4>
+                            <p id="story-summary" class="leading-relaxed font-sans text-sm md:text-base text-slate-700 dark:text-slate-300 mb-6"></p>
+                            
+                            <h4 class="text-[11px] md:text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-3 flex items-center gap-1.5"><i class="ph-fill ph-book-bookmark"></i> Key Vocabulary</h4>
+                            <div id="story-vocab" class="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-3 font-sans text-sm md:text-base"></div>
+
+                            <div class="mt-8 pt-6 flex justify-center">
+                                <button onclick="views.exportStory()" class="bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-amber-600 dark:text-amber-400 border border-amber-200 dark:border-slate-600 px-5 py-2.5 rounded-full font-bold shadow-sm transition-colors flex items-center gap-2 text-sm md:text-base active:scale-95">
+                                    <i class="ph-bold ph-download-simple text-lg"></i> Export as TXT
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="story-empty" class="flex-1 flex flex-col items-center justify-center py-16 app-card border-dashed bg-slate-50/50 dark:bg-slate-800/20">
+                    <i class="ph-thin ph-books text-5xl md:text-6xl mb-3 text-amber-300 dark:text-slate-600"></i>
+                    <p class="font-medium text-slate-500 dark:text-slate-400 text-sm md:text-base">Ready for a story or conversation?</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-t border-slate-200 dark:border-slate-800 z-40 pb-safe shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] transition-colors">
+        <div class="flex justify-around items-center h-16 px-2 sm:px-4">
+            <button onclick="app.navigate('home')" id="mobile-nav-home" class="flex flex-col items-center justify-center w-16 h-full text-slate-500 dark:text-slate-400 transition-colors">
+                <i class="ph ph-house text-2xl mb-1 transition-transform"></i>
+                <span class="text-[10px] font-medium tracking-wide">Home</span>
+            </button>
+            <button onclick="app.navigate('grammar')" id="mobile-nav-grammar" class="flex flex-col items-center justify-center w-16 h-full text-slate-500 dark:text-slate-400 transition-colors">
+                <i class="ph ph-magic-wand text-2xl mb-1 transition-transform"></i>
+                <span class="text-[10px] font-medium tracking-wide">Fix</span>
+            </button>
+            <button onclick="app.navigate('translator')" id="mobile-nav-translator" class="flex flex-col items-center justify-center w-16 h-full text-slate-500 dark:text-slate-400 transition-colors">
+                <i class="ph ph-translate text-2xl mb-1 transition-transform"></i>
+                <span class="text-[10px] font-medium tracking-wide">Translate</span>
+            </button>
+            <button onclick="app.navigate('story')" id="mobile-nav-story" class="flex flex-col items-center justify-center w-16 h-full text-slate-500 dark:text-slate-400 transition-colors">
+                <i class="ph ph-book-open-text text-2xl mb-1 transition-transform"></i>
+                <span class="text-[10px] font-medium tracking-wide">Story</span>
+            </button>
         </div>
     </nav>
 
-    <!-- Main Content Area -->
-    <main id="app-content" class="flex-grow container mx-auto px-4 py-6 md:py-10 max-w-5xl">
-        <!-- Dynamic Content injected here -->
-    </main>
-
-    <!-- Settings Modal -->
-    <div id="settings-modal"
-        class="fixed inset-0 bg-gray-900/60 backdrop-blur-sm hidden z-[60] flex items-center justify-center transition-opacity duration-300">
-        <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl p-6 w-full max-w-md m-4 transform scale-100 transition-transform border dark:border-slate-700">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-xl font-bold text-gray-800 dark:text-white flex items-center gap-2">
-                    <i class="fas fa-sliders-h text-blue-500"></i> Settings
-                </h2>
-                <button onclick="app.toggleSettings()"
-                    class="text-gray-400 hover:text-red-500 dark:text-slate-400 w-8 h-8 flex items-center justify-center rounded-full hover:bg-red-50 dark:hover:bg-red-900/30 transition"><i
-                        class="fas fa-times"></i></button>
+    <div id="settings-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] hidden items-end md:items-center justify-center sm:p-4 opacity-0 transition-opacity duration-300">
+        <div class="absolute inset-0 w-full h-full" onclick="app.toggleSettings()"></div>
+        
+        <div class="bg-white dark:bg-slate-900 w-full sm:max-w-md md:rounded-3xl rounded-t-3xl shadow-2xl transform translate-y-full md:translate-y-0 md:scale-95 transition-all duration-300 overflow-hidden flex flex-col max-h-[85vh] relative z-10">
+            
+            <div class="md:hidden flex justify-center pt-3 pb-1">
+                <div class="w-12 h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full"></div>
             </div>
 
-            <div class="space-y-6">
-                <!-- API Key Section -->
+            <div class="px-6 py-4 flex justify-between items-center">
+                <h3 class="text-lg md:text-xl font-bold flex items-center gap-2.5 text-slate-800 dark:text-white">
+                    <i class="ph-fill ph-gear text-blue-500"></i> Settings
+                </h3>
+                <button onclick="app.toggleSettings()" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition bg-slate-100 dark:bg-slate-800 rounded-full w-8 h-8 flex items-center justify-center">
+                    <i class="ph-bold ph-x text-sm"></i>
+                </button>
+            </div>
+            
+            <div class="p-6 overflow-y-auto no-scrollbar space-y-6">
                 <div>
-                    <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Google Gemini API Key</label>
-                    <div class="relative">
-                        <input type="password" id="api-key-input" placeholder="AIzaSy..."
-                            class="w-full border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-gray-800 dark:text-white rounded-xl p-3 pl-10 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
-                        <i class="fas fa-key absolute left-3 top-3.5 text-gray-400"></i>
+                    <div class="flex items-center justify-between mb-3">
+                        <h4 class="text-sm font-bold text-slate-800 dark:text-white flex items-center gap-1.5">
+                            <i class="ph-fill ph-key text-slate-400"></i> API Configuration
+                        </h4>
+                        <span id="api-key-status" class="text-[10px] uppercase tracking-wider font-bold px-2 py-0.5 rounded-md bg-slate-100 text-slate-500">Unknown</span>
                     </div>
-                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-2 leading-relaxed">
-                        Your key is stored locally in your browser.
-                        <span class="text-orange-500 dark:text-orange-400 font-medium">Without a key, the app runs in 'Demo Mode'.</span>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-4 leading-relaxed">
+                        Chitti English uses Google Gemini. By default, it runs in <strong class="text-amber-600 dark:text-amber-400 font-medium">Demo Mode</strong>. 
+                        Enter an API Key to unlock limitless generation. Stored only on this device.
                     </p>
-                </div>
 
-                <!-- Dark Mode Toggle -->
-                <div class="flex items-center justify-between p-3 bg-gray-50 dark:bg-slate-900/50 rounded-xl border border-gray-100 dark:border-slate-700">
-                    <div class="flex items-center gap-3">
-                        <div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-300">
-                            <i class="fas fa-moon"></i>
+                    <div class="space-y-3">
+                        <input type="password" id="api-key-input" placeholder="Paste your API key here..." class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-4 py-3 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none font-mono text-sm dark:text-white transition-colors">
+                        
+                        <div class="flex gap-2">
+                            <button onclick="app.saveApiKey()" class="flex-1 bg-blue-600 text-white min-h-[44px] rounded-xl text-sm font-bold transition-colors active:scale-95">Save Key</button>
+                            <button onclick="app.clearKey()" class="px-4 bg-slate-100 dark:bg-slate-800 text-red-600 dark:text-red-400 border border-slate-200 dark:border-slate-700 min-h-[44px] rounded-xl text-sm font-bold transition-colors active:scale-95">Clear</button>
                         </div>
-                        <span class="font-medium text-gray-700 dark:text-gray-200">Dark Mode</span>
-                    </div>
-                    <div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
-                        <input type="checkbox" name="toggle" id="dark-mode-toggle" onchange="app.toggleDarkMode()" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer border-gray-300 transition-all duration-300"/>
-                        <label for="dark-mode-toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer transition-colors duration-300"></label>
                     </div>
                 </div>
 
-                <div class="flex gap-3 pt-2">
-                    <button onclick="app.saveSettings()"
-                        class="flex-1 bg-blue-600 text-white py-2.5 rounded-xl hover:bg-blue-700 transition font-medium shadow-md shadow-blue-200 dark:shadow-none">
-                        Save Key
-                    </button>
-                    <button onclick="app.clearKey()"
-                        class="px-4 py-2.5 rounded-xl border border-red-200 dark:border-red-900/50 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 font-medium transition">
-                        Logout
-                    </button>
+                <div class="bg-amber-50/50 dark:bg-amber-900/10 p-4 rounded-xl border border-amber-100 dark:border-amber-900/30">
+                    <h4 class="text-xs font-bold text-amber-800 dark:text-amber-500 mb-2 flex items-center gap-1.5">
+                        <i class="ph-fill ph-info"></i> Demo Mode Constraints
+                    </h4>
+                    <p class="text-[11px] text-slate-600 dark:text-slate-400 mb-3">Without an API key, test these exact queries:</p>
+                    <div class="space-y-2">
+                        <div class="bg-white dark:bg-slate-800 px-3 py-2 rounded-lg border border-slate-100 dark:border-slate-700 flex justify-between items-center gap-2">
+                            <span class="text-[10px] font-bold text-slate-400 uppercase">Grammar</span>
+                            <code class="text-xs font-medium text-emerald-600 dark:text-emerald-400 truncate">I didn't went there.</code>
+                        </div>
+                        <div class="bg-white dark:bg-slate-800 px-3 py-2 rounded-lg border border-slate-100 dark:border-slate-700 flex justify-between items-center gap-2">
+                            <span class="text-[10px] font-bold text-slate-400 uppercase">Translate</span>
+                            <code class="text-xs font-medium text-purple-600 dark:text-purple-400 truncate">நான் நாளை சென்னை...</code>
+                        </div>
+                        <div class="bg-white dark:bg-slate-800 px-3 py-2 rounded-lg border border-slate-100 dark:border-slate-700 flex justify-between items-center gap-2">
+                            <span class="text-[10px] font-bold text-slate-400 uppercase">Story</span>
+                            <code class="text-xs font-medium text-amber-600 dark:text-amber-400 truncate">A clever fox</code>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-white dark:bg-slate-900 border-t border-gray-200 dark:border-slate-800 mt-auto py-8 transition-colors duration-300">
-        <div class="container mx-auto px-4 text-center">
-            <div
-                class="w-12 h-12 bg-blue-50 dark:bg-slate-800 text-blue-600 dark:text-blue-400 rounded-full flex items-center justify-center mx-auto mb-3 text-xl">
-                <i class="fas fa-robot"></i>
-            </div>
-            <h3 class="font-bold text-gray-800 dark:text-gray-200">Chitti English</h3>
-            <p class="text-gray-500 dark:text-gray-400 text-sm mt-1 mb-4 tamil-text">உங்கள் AI ஆங்கில நண்பன்.</p>
-            <p class="text-xs text-gray-400 dark:text-gray-600">&copy; 2025 Chitti English. Stored locally.</p>
-        </div>
-    </footer>
-
-    <!-- JavaScript Application Logic -->
-    <script src="script.js">
-
-    </script>
+    <script src="script.js"></script>
 </body>
-
 </html>
