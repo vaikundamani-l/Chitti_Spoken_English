@@ -1,100 +1,126 @@
- body {
-            font-family: 'Poppins', sans-serif;
-        }
+/* Book Style Variables */
+:root {
+    --book-bg-light: #FDFBF7;
+    --book-spine-light: #8B4513;
+    --book-text-light: #3e2723;
+    
+    --book-bg-dark: #1e293b;
+    --book-spine-dark: #0f172a;
+    --book-text-dark: #f1f5f9;
+}
 
-        .tamil-text {
-            font-family: 'Noto Sans Tamil', sans-serif;
-            line-height: 1.6;
-        }
+body {
+    font-family: 'Inter', 'Mukta Malar', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    transition: background-color 0.3s, color 0.3s;
+}
 
-        .fade-in { animation: fadeIn 0.4s ease-out forwards; opacity: 0; transform: translateY(10px); }
-        @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+/* Standardized App Card Style */
+.app-card {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 1.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    transition: all 0.2s ease-in-out;
+}
+.dark .app-card {
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+}
 
-        .loader {
-            border: 3px solid #e2e8f0;
-            border-radius: 50%;
-            border-top: 3px solid #2563EB;
-            width: 24px;
-            height: 24px;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+/* Desktop Nav Animations */
+.desktop-nav-active {
+    color: #2563eb !important;
+    font-weight: 600;
+}
+.dark .desktop-nav-active {
+    color: #60a5fa !important; 
+}
+.desktop-nav-active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 10%;
+    width: 80%;
+    height: 3px;
+    background-color: #2563eb;
+    border-radius: 3px 3px 0 0;
+}
+.dark .desktop-nav-active::after {
+    background-color: #60a5fa;
+}
 
-        /* Glassmorphism for Mobile Menu */
-        .glass-menu {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-        }
-        .dark .glass-menu {
-            background: rgba(15, 23, 42, 0.95);
-        }
+/* Mobile Bottom Nav Animations */
+.mobile-nav-active {
+    color: #2563eb !important;
+}
+.dark .mobile-nav-active {
+    color: #60a5fa !important;
+}
+.mobile-nav-active i {
+    font-weight: bold;
+    transform: translateY(-2px);
+}
 
-        .gradient-text {
-            background: linear-gradient(to right, #2563EB, #4F46E5);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .dark .gradient-text {
-            background: linear-gradient(to right, #60A5FA, #818CF8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        /* Golden Gradient for Bonus */
-        .bg-gold-gradient {
-            background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
-        }
+/* Loader Animation */
+.loader {
+    border-top-color: currentColor;
+    -webkit-animation: spinner 0.8s linear infinite;
+    animation: spinner 0.8s linear infinite;
+}
+@keyframes spinner {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 
-        .chat-bubble {
-            position: relative;
-            max-width: 85%;
-            padding: 12px 16px;
-            border-radius: 16px;
-            margin-bottom: 12px;
-            font-size: 0.95rem;
-        }
-        .chat-user {
-            background-color: #2563EB;
-            color: white;
-            margin-left: auto;
-            border-bottom-right-radius: 4px;
-        }
-        .chat-ai {
-            background-color: white;
-            color: #374151;
-            margin-right: auto;
-            border-bottom-left-radius: 4px;
-            border: 1px solid #E5E7EB;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-        .dark .chat-ai {
-            background-color: #1E293B;
-            color: #E2E8F0;
-            border-color: #334155;
-        }
-        
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: transparent; 
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #cbd5e1; 
-            border-radius: 10px;
-        }
-        .dark .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #475569;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8; 
-        }
+/* Page Section Transition */
+.page-section {
+    display: none;
+    animation: fadeIn 0.3s ease-out forwards;
+}
+.page-section.active {
+    display: flex;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
-        /* Toggle Switch */
-        .toggle-checkbox:checked {
-            right: 0;
-            border-color: #2563EB;
-        }
-        .toggle-checkbox:checked + .toggle-label {
-            background-color: #2563EB;
-        }
+/* Book Style Layout */
+.book-page {
+    background-color: var(--book-bg-light);
+    box-shadow: inset 2px 0 5px rgba(0,0,0,0.03), -2px 2px 10px rgba(0,0,0,0.05);
+    border-left: 8px solid var(--book-spine-light);
+    border-radius: 4px 16px 16px 4px;
+    color: var(--book-text-light);
+}
+@media (min-width: 768px) {
+    .book-page { border-left-width: 12px; }
+}
+.dark .book-page {
+    background-color: var(--book-bg-dark);
+    box-shadow: inset 2px 0 5px rgba(0,0,0,0.2), -2px 2px 10px rgba(0,0,0,0.3);
+    border-left-color: var(--book-spine-dark);
+    color: var(--book-text-dark);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+.dark ::-webkit-scrollbar-thumb { background: #475569; }
+
+/* Hide scrollbar for clean UI on mobile */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Toast Notifications */
+.toast-enter { animation: toastIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+@keyframes toastIn {
+    from { opacity: 0; transform: translate(-50%, 20px) scale(0.9); }
+    to { opacity: 1; transform: translate(-50%, 0) scale(1); }
+}
