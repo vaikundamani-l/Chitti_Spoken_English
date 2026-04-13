@@ -82,6 +82,7 @@ const app = {
         if (app.apiKey) {
             document.getElementById('api-key-input').value = app.apiKey;
         }
+
         app.updateNavStyles('home');
     },
 
@@ -108,25 +109,33 @@ const app = {
 
     toggleSettings: () => {
         const modal = document.getElementById('settings-modal');
-        const modalContent = modal.querySelector('div');
+        const backdrop = document.getElementById('settings-backdrop');
+        const content = document.getElementById('settings-content');
         
         if (modal.classList.contains('hidden')) {
+            // Open Sequence
             modal.classList.remove('hidden');
-            modal.classList.add('flex');
             
-            setTimeout(() => {
-                modal.classList.remove('opacity-0');
-                modalContent.classList.remove('translate-y-full', 'md:scale-95');
-            }, 10);
+            // Force reflow
+            void modal.offsetWidth; 
+            
+            backdrop.classList.remove('opacity-0');
+            backdrop.classList.add('opacity-100');
+            
+            content.classList.remove('translate-y-full', 'md:scale-95', 'md:opacity-0');
+            content.classList.add('translate-y-0', 'md:scale-100', 'md:opacity-100');
             
             if(app.apiKey) document.getElementById('api-key-input').value = app.apiKey;
         } else {
-            modal.classList.add('opacity-0');
-            modalContent.classList.add('translate-y-full', 'md:scale-95');
+            // Close Sequence
+            backdrop.classList.remove('opacity-100');
+            backdrop.classList.add('opacity-0');
+            
+            content.classList.remove('translate-y-0', 'md:scale-100', 'md:opacity-100');
+            content.classList.add('translate-y-full', 'md:scale-95', 'md:opacity-0');
             
             setTimeout(() => {
                 modal.classList.add('hidden');
-                modal.classList.remove('flex');
             }, 300);
         }
     },
@@ -145,20 +154,18 @@ const app = {
     },
 
     updateNavStyles: (view) => {
-        // Desktop Nav
+        // Desktop Nav Reset
         document.querySelectorAll('nav button[id^="desktop-nav-"]').forEach(el => {
             el.classList.remove('desktop-nav-active', 'text-slate-900', 'dark:text-white');
             el.classList.add('text-slate-500', 'dark:text-slate-400');
         });
         
-        // Mobile Bottom Nav
+        // Mobile Bottom Nav Reset
         document.querySelectorAll('nav button[id^="mobile-nav-"]').forEach(el => {
             el.classList.remove('mobile-nav-active', 'text-blue-600', 'dark:text-blue-400');
             el.classList.add('text-slate-500', 'dark:text-slate-400');
             const icon = el.querySelector('i');
-            if(icon) {
-                icon.className = icon.className.replace('ph-fill', 'ph').replace('ph-bold', 'ph');
-            }
+            if(icon) icon.className = icon.className.replace('ph-fill', 'ph').replace('ph-bold', 'ph');
         });
         
         // Active Desktop
@@ -174,9 +181,7 @@ const app = {
             activeMobile.classList.remove('text-slate-500', 'dark:text-slate-400');
             activeMobile.classList.add('mobile-nav-active', 'text-blue-600', 'dark:text-blue-400');
             const icon = activeMobile.querySelector('i');
-            if(icon) {
-                icon.className = icon.className.replace('ph ', 'ph-fill ');
-            }
+            if(icon) icon.className = icon.className.replace('ph ', 'ph-fill ');
         }
     },
 
@@ -212,6 +217,8 @@ const app = {
             if(homeBadge) {
                 homeBadge.className = 'mt-10 md:mt-12 inline-flex items-center gap-2 px-4 py-2 md:px-5 md:py-2.5 bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800/50 text-emerald-800 dark:text-emerald-400 rounded-full text-xs md:text-sm font-medium transition-colors';
                 homeBadge.innerHTML = '<i class="ph-fill ph-check-circle text-lg"></i> Full AI Access Enabled';
+                homeBadge.onclick = null;
+                homeBadge.style.cursor = 'default';
             }
         } else {
             statusText.textContent = 'Demo Mode';
@@ -222,6 +229,7 @@ const app = {
                 homeBadge.className = 'mt-10 md:mt-12 inline-flex items-center gap-2 px-4 py-2 md:px-5 md:py-2.5 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800/50 text-amber-800 dark:text-amber-400 rounded-full text-xs md:text-sm font-medium transition-colors cursor-pointer active:scale-95';
                 homeBadge.innerHTML = '<i class="ph-fill ph-warning-circle text-lg"></i> In Demo Mode. Tap to add Key.';
                 homeBadge.onclick = app.toggleSettings;
+                homeBadge.style.cursor = 'pointer';
             }
         }
     },
@@ -415,7 +423,7 @@ const views = {
         const btnDiag = document.getElementById('btn-format-dialogue');
         
         const baseClass = 'flex-1 py-2 rounded-lg text-sm font-bold transition-all shadow-sm flex items-center justify-center gap-1.5';
-        const inactiveClass = 'flex-1 py-2 rounded-lg text-sm font-bold transition-all text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 flex items-center justify-center gap-1.5';
+        const inactiveClass = 'flex-1 py-2 rounded-lg text-sm font-bold transition-all text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 flex items-center justify-center gap-1.5 bg-transparent';
         
         if (format === 'story') {
             btnStory.className = `${baseClass} bg-white dark:bg-slate-700 text-amber-600 dark:text-amber-400`;
